@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 
 const JWT_SECRET = "HSM_HERE_:))";//this will be the signature over the token of JWT to authneticate our user and ensure the user doesnt changes aspects of the json while using the application
 
-//create a user using : POST "/api/auth". doesnt require Auth ( authenitication ), No login required 
+//create a user using : POST "/api/auth/createuser". doesnt require Auth ( authenitication ), No login required 
 router.post('/createuser',[
     body('name', 'Enter a valid name').isLength({ min: 3 }),
     body('email', "Enter a valid Email").isEmail(),
@@ -33,8 +33,8 @@ router.post('/createuser',[
         }
     }
     const jwt_token = jwt.sign(data, JWT_SECRET);
-    console.log(jwt_token);
-    res.json(user);
+    // res.json(user);
+    res.json({jwt_token});
 
     }catch(err){
         if(err.code=== 11000){
@@ -46,5 +46,40 @@ router.post('/createuser',[
         // we will send this error to logger or SQS not just showing it over the console
     }
 });
+
+//Authenticate a user using : POST "/api/auth/login". No login required 
+router.post('/login',[
+    body('email', "Enter a valid Email").isEmail(),
+    body('password', 'Password cannot be blank').exists()
+  ],async (req,res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors : errors.array()});
+    }
+    const { email , password} = req.body;
+
+    try{
+        let user =await User.findOne({email});
+        if(!user){
+            return res.status(400).json({error :"Check over your credentials again"});
+        }
+        const passwordCompare =await bcrypt.compare(password, user.password);
+        if(!passwordCompare){
+            return res.status(400).json({error :"Check over your credentials again"});
+        }
+        const payload = { 
+            user :{ 
+                id : user.id
+            }
+        }
+        const auth_token = jwt.sign(payload, JWT_SECRET);
+        res.json({auth_token});
+    }catch(err){
+        console.error(err);
+        res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+    }
+
+});
+
 
 module.exports = router;
