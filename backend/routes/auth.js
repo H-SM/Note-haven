@@ -4,11 +4,12 @@ const User = require("../models/User");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+const fetchuser = require('../middleware/fetchuser');
 
 
 const JWT_SECRET = "HSM_HERE_:))";//this will be the signature over the token of JWT to authneticate our user and ensure the user doesnt changes aspects of the json while using the application
 
-//create a user using : POST "/api/auth/createuser". doesnt require Auth ( authenitication ), No login required 
+//ROUTE 1: create a user using : POST "/api/auth/createuser". doesnt require Auth ( authenitication ), No login required 
 router.post('/createuser',[
     body('name', 'Enter a valid name').isLength({ min: 3 }),
     body('email', "Enter a valid Email").isEmail(),
@@ -47,7 +48,7 @@ router.post('/createuser',[
     }
 });
 
-//Authenticate a user using : POST "/api/auth/login". No login required 
+//ROUTE 2: Authenticate a user using : POST "/api/auth/login". No login required 
 router.post('/login',[
     body('email', "Enter a valid Email").isEmail(),
     body('password', 'Password cannot be blank').exists()
@@ -81,5 +82,15 @@ router.post('/login',[
 
 });
 
-
+//ROUTE 3:GET logged-in user details : POST "/api/auth/getuser". login required 
+router.post('/getuser',fetchuser,  async (req,res)=>{
+    try {
+        const userId = req.user.id;
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
+    } catch (err_hsm) {
+        console.error(err_hsm);
+        res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+    }
+});
 module.exports = router;
