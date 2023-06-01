@@ -41,6 +41,7 @@ router.post("/addnote", fetchuser,[
 //ROUTE 3:update an existing note : PUT "/api/notes/updatenote". login required
 router.put('/updatenote/:id', fetchuser,
   async (req, res) => {
+    try {
     const {title , description, tag} = req.body;
     //create a new Note object 
     const newNote = {};
@@ -59,6 +60,32 @@ router.put('/updatenote/:id', fetchuser,
 
     const note_upd = await Note.findByIdAndUpdate(req.params.id, {$set : newNote},{new : true});
     res.json(note_upd);
+    } catch (err) {
+    console.error(err);
+    res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+  }
+  }
+);
+
+//ROUTE 3:delete an existing note : PUT "/api/notes/deletenote". login required
+router.delete('/deletenote/:id', fetchuser,
+  async (req, res) => {
+    try {
+    //find the note to be deleted
+    let note =await Note.findById(req.params.id);
+    if(!note) res.status(404).send("NOT FOUND!");
+
+    //allowed deletion if the user owns the note
+    if(note.user.toString() !== req.user.id){
+        return res.status(401).send("NOT ALLOWED");
+    }
+
+    const note_del = await Note.findByIdAndDelete(req.params.id);
+    res.json({"success" : "NOTE DELETED", "note" : note_del});
+    } catch (err) {
+    console.error(err);
+    res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+  }
   }
 );
 
