@@ -9,7 +9,7 @@ const context = useContext(contextValue);
     <div className="row my-3">
       <h3> Your Notes </h3>
       {notes.map((note) => {
-        return <Noteitem note={note}/>
+        return <Noteitem note={note} key={note._id}/>
       })}
     </div>
   )
