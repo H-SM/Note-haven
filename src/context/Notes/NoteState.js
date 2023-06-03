@@ -50,8 +50,37 @@ const NoteState = (props) =>{
       }
     ]
     const[notes , setNotes ] = useState(notesInitial); 
+
+
+    //add a note 
+    const addnote = (title, description, tag) =>{
+      //TODO: API CALL
+      let note = {
+        "_id": "6478070135801c84467b95ca",
+        "user": "64775b9f1e699ddad735639f",
+        "title": title,
+        "description": description,
+        "tag": tag,
+        "date": "2023-06-01T02:48:33.612Z",
+        "__v": 0
+      };
+      setNotes(notes.concat(note));
+      //we dont even have to send in the id of the user, the token will validate & find out the user for the note 
+
+    }
+
+    //delete a note 
+    const deletenote = (id) =>{
+      
+    }
+
+    //edit a note
+    const editnote = (id) =>{
+      
+    }
+
     return (
-    <NoteContext.Provider value={{notes,setNotes}}>
+    <NoteContext.Provider value={{notes,setNotes, addnote, deletenote, editnote}}>
         {props.children}
     </NoteContext.Provider>
     );
