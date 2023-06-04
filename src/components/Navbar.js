@@ -1,15 +1,17 @@
-import React, {useEffect} from 'react'
+// import React, {useEffect} from 'react';
+import React from 'react';
+
 import { Link , useLocation } from "react-router-dom";
 
 
 const Navbar = () => {
   let location = useLocation();
 
-  useEffect(() => {
-    // Google Analytics
-    // ga('send', 'pageview');
-    console.log(location.pathname);
-  }, [location]);
+  // useEffect(() => {
+  //   // Google Analytics
+  //   // ga('send', 'pageview');
+  //   console.log(location.pathname);
+  // }, [location]);
 
   return (
     <>
