@@ -48,20 +48,18 @@ const NoteState = (props) =>{
     }
 
     //delete a note 
-    const deletenote =  (id) =>{
-      // //API call
-      // const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3NzViOWYxZTY5OWRkYWQ3MzU2MzlmIn0sImlhdCI6MTY4NTU0NjE0N30.qQFuVp-Uw0xgixmB6fKElwpR03oImh9kb13L8uwVe2o"
-      //   },
-      //   body: JSON.stringify({title, description, tag}) 
-      // });
-      // const json = response.json(); 
-
+    const deletenote =async (id) =>{
+      //API call
+      const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3NzViOWYxZTY5OWRkYWQ3MzU2MzlmIn0sImlhdCI6MTY4NTU0NjE0N30.qQFuVp-Uw0xgixmB6fKElwpR03oImh9kb13L8uwVe2o"
+        }
+      });
+      const json = response.json(); 
       //logic
-      console.log("this is the firing of the delete node call here with the id ->" + id );
+      console.log(json);
       const newNotes = notes.filter((note) => {return note._id !== id; });
       setNotes(newNotes);
     }
