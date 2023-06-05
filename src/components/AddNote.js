@@ -4,10 +4,11 @@ import contextValue from "../context/Notes/noteContext.js";
 function AddNote() {
     const context = useContext(contextValue);
     const {addnote} = context;
-    const [note, setNote] = useState({title : "", description : "", tag : "default"});
+    const [note, setNote] = useState({title : "", description : "", tag : ""});
     const handleclick= (e) => {
         e.preventDefault();
         addnote(note.title, note.description, note.tag);
+        setNote({title : "", description : "", tag : ""});
     }
 
     const onChange= (e) =>{
@@ -21,17 +22,17 @@ function AddNote() {
       <form>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
-          <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" onChange={onChange}/>
+          <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" value={note.title} placeholder="Your Title" onChange={onChange}/>
         </div>
         <div className="mb-3">
           <label htmlFor="desc" className="form-label">Description</label>
-          <input type="text" className="form-control" id="description" name="description" onChange={onChange}/>
+          <input type="text" className="form-control" id="description" name="description" value={note.description} placeholder="Your Description" onChange={onChange}/>
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="tag">Tag</label>
-          <input type="text" className="form-control" id="tag" name="tag" onChange={onChange}/>
+          <input type="text" className="form-control" id="tag" name="tag" value={note.tag} placeholder="Your Tag" onChange={onChange}/>
         </div>
-        <button type="submit" className="btn btn-primary" onClick={handleclick}>Add Note</button>
+        <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleclick}>Add Note</button>
       </form>
       </div>
     </div>
