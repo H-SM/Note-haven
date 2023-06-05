@@ -16,8 +16,9 @@ router.post('/createuser',[
     body('password', 'Password must have a minimum of 5 characters').isLength({ min: 5 }),
   ],async (req,res)=>{
     const errors = validationResult(req);
+    let success = false;
     if(!errors.isEmpty()){
-        return res.status(400).json({errors : errors.array()});
+        return res.status(400).json({success, errors : errors.array()});
     }
     try{
     const salt =await bcrypt.genSalt(10);//make up the salt
@@ -35,15 +36,16 @@ router.post('/createuser',[
     }
     const jwt_token = jwt.sign(data, JWT_SECRET);
     // res.json(user);
-    res.json({jwt_token});
+    success = true;
+    res.json({success, jwt_token});
 
     }catch(err){
         if(err.code=== 11000){
             //Duplicate key error 
-            return res.status(400).json({error : "Email Already Exist"});
+            return res.status(400).json({success, error : "Email Already Exist"});
         }
         console.error(err);
-        res.status(500).json({error : "server error", message : err.message});
+        res.status(500).json({success, error : "server error", message : err.message});
         // we will send this error to logger or SQS not just showing it over the console
     }
 });
