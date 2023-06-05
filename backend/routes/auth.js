@@ -54,19 +54,20 @@ router.post('/login',[
     body('password', 'Password cannot be blank').exists()
   ],async (req,res)=>{
     const errors = validationResult(req);
+    let success = false;
     if(!errors.isEmpty()){
-        return res.status(400).json({errors : errors.array()});
+        return res.status(400).json({success , errors : errors.array()});
     }
     const { email , password} = req.body;
 
     try{
         let user =await User.findOne({email});
         if(!user){
-            return res.status(400).json({error :"Check over your credentials again"});
+            return res.status(400).json({success, error :"Check over your credentials again"});
         }
         const passwordCompare =await bcrypt.compare(password, user.password);
         if(!passwordCompare){
-            return res.status(400).json({error :"Check over your credentials again"});
+            return res.status(400).json({success, error :"Check over your credentials again"});
         }
         const payload = { 
             user :{ 
@@ -74,7 +75,8 @@ router.post('/login',[
             }
         }
         const auth_token = jwt.sign(payload, JWT_SECRET);
-        res.json({auth_token});
+        success = true;
+        res.json({success, auth_token});
     }catch(err){
         console.error(err);
         res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
