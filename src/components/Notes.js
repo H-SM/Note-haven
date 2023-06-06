@@ -4,9 +4,10 @@ import Noteitem from './noteitem.js';
 import AddNote from './AddNote'
 
 
-function Notes() {
+function Notes(props) {
   const context = useContext(contextValue);
   const {notes, getallnote, editnote} = context;
+  const {showAlert} = props;
   useEffect(()=>{
     getallnote();
     // eslint-disable-next-line
@@ -18,12 +19,15 @@ function Notes() {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({id:currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag, });
+    // props.showAlert("Note updated successfully!", "success");
   }
 
 const handleclick= (e) => {
     console.log("this will change the note to -> \n", note ,"\n in the next commits");
     editnote(note.id, note.etitle, note.edescription, note.etag);
     ref.current.click();
+    props.showAlert("Note updated successfully!", "success");
+
 }
 
 const onChange= (e) =>{
@@ -31,8 +35,7 @@ const onChange= (e) =>{
 }
   return (
     <>
-    <AddNote/>
-
+    <AddNote showAlert={showAlert}/>
           <button style={{"display": "none"}} ref={ref} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Launch demo modal
           </button>
@@ -80,7 +83,7 @@ const onChange= (e) =>{
       {(notes.length===0) && "No notes to display"}
       </div>
       {notes.map((note) => {
-        return <Noteitem note={note} key={note._id} updateNote={updateNote}/>
+        return <Noteitem note={note} key={note._id} updateNote={updateNote} showAlert={showAlert}/>
       })}
     </div>
     </>
