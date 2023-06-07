@@ -1,4 +1,4 @@
-#The TODO List 
+# The TODO List 
 
 - apply a redux - state looker rather than context api 
 - make a new segment to edit a note and reflect the changes 
