@@ -1,15 +1,21 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';//you can give reference to a element like here to the modal
 import contextValue from "../context/Notes/noteContext.js";
+import { useNavigate } from "react-router-dom";
 import Noteitem from './noteitem.js';
 import AddNote from './AddNote'
 
 
 function Notes(props) {
+  let navigate = useNavigate();
   const context = useContext(contextValue);
   const {notes, getallnote, editnote} = context;
   const {showAlert} = props;
   useEffect(()=>{
-    getallnote();
+    if(localStorage.getItem('token')){
+      getallnote();
+    }else{
+      navigate('/login');
+    }
     // eslint-disable-next-line
   },[]);
   const ref = useRef(null);

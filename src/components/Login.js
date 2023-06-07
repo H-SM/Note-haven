@@ -17,9 +17,9 @@ function Login(props) {
         console.log(json);
         if(json.success){
             //save the auth_token and redirect
-            localStorage.setItem('token', json.auth_token);
-            navigate("/");
+            localStorage.setItem('token', json.auth_token);//we are saving the token in the local storage to fetch the correct data for that user
             props.showAlert("Logged in successfully!", "success");
+            navigate("/");
         }else{
             props.showAlert("Invalid credentails", "danger");
         }
