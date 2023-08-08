@@ -15,14 +15,12 @@ const NoteState = (props) =>{
                 }
               });
               const json = await response.json();
-              // console.log(json);
               setNotes(json);
     }
 
     //add a note 
     const addnote =async (title, description, tag) =>{
       //API call
-      //the id get automatically assigned in the BE, we dont even have to send in the id of the user, the token will validate & find out the user for the note 
       const response = await fetch(`${host}/api/notes/addnote/`, {
         method: "POST",
         headers: {
@@ -33,8 +31,6 @@ const NoteState = (props) =>{
       });
       const note =await response.json(); 
       setNotes(notes.concat(note));
-      // console.log(json);
-      // const json = response.json(); 
 
     }
 
@@ -49,8 +45,6 @@ const NoteState = (props) =>{
           "auth-token" : localStorage.getItem("token")
         }
       });
-      // const json = response.json(); 
-      // console.log(json);
       //logic
       const newNotes = notes.filter((note) => {return note._id !== id; });
       setNotes(newNotes);
@@ -59,7 +53,6 @@ const NoteState = (props) =>{
     //edit a note
     const editnote = async (id, title, description, tag) =>{
       //API call
-      // const response = 
       await fetch(`${host}/api/notes/updatenote/${id}`, {
         method: "PUT",
         headers: {
@@ -68,9 +61,6 @@ const NoteState = (props) =>{
         },
         body: JSON.stringify({title, description, tag}) 
       });
-      // const json = response.json(); 
-      // const json =await response.json(); 
-      // console.log(json);
       //logic
       let newNotes = JSON.parse(JSON.stringify(notes));
 
