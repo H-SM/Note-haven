@@ -97,4 +97,50 @@ router.post('/getuser',fetchuser,  async (req,res)=>{
         res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
     }
 });
+
+
+//ROUTE 4: Update user info. verification required
+router.put('/settings',[
+    body('newpassword', 'Password cannot be blank').exists(),
+    body('oldpassword', 'Password cannot be blank').exists(),
+    body('name', 'Enter a valid name').isLength({ min: 3 }),
+],async (req,res)=>{
+    try {
+            const userId = req.user.id;
+            let success = false;
+            // $2a$10$DmF/OrDc8ZaAmzStnTUqH.wUzWan65RUAyQ4l.qh4PtpIvZs/S7PK
+            // const { name, oldpassword, newpassword , userId } = req.body;
+            const { name, oldpassword, newpassword } = req.body;
+            // console.log('User ID:', userId); // Debug line
+            // console.log('Request Body:', req.body); // Debug line
+    
+            const user = await User.findById(userId);
+            // console.log('User:', user); // Debug line
+    
+            if (!user) {
+                return res.status(400).json({ success, error: "Check over your credentials again" });
+            }
+    
+            const passwordCompare = await bcrypt.compare(oldpassword, user.password);
+            // console.log('Password Compare Result:', passwordCompare); // Debug line
+
+
+        if(!passwordCompare){
+            return res.status(400).json({success, error :"Incorrect Password Entered"});
+        }
+        const salt =await bcrypt.genSalt(10);//make up the salt
+        const secPass =await bcrypt.hash(newpassword, salt);
+
+        const updInfo = {};
+        if(name){updInfo.name = name;}
+        if(newpassword){updInfo.password = secPass;}
+        success = true;
+        const user_upd = await User.findByIdAndUpdate(userId, {$set : updInfo},{new : true});
+        res.json(user_upd);
+    }catch(err){
+        console.error(err);
+        res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+    }
+});
+
 module.exports = router;
