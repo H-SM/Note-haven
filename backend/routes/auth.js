@@ -120,7 +120,7 @@ router.put('/settings/name',[
         if(name){updInfo.name = name;}
         success = true;
         const user_upd = await User.findByIdAndUpdate(userId, {$set : updInfo},{new : true});
-        res.json(user_upd);
+        res.json(success, user_upd);
 }catch(err){
     console.error(err);
     res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
@@ -161,7 +161,7 @@ router.put('/settings/pw',[
         if(newpassword){updInfo.password = secPass;}
         success = true;
         const user_upd = await User.findByIdAndUpdate(userId, {$set : updInfo},{new : true});
-        res.json(user_upd);
+        res.json(success, user_upd);
     }catch(err){
         console.error(err);
         res.status(500).send("INTERNAL SERVER ERROR : Some error occured");

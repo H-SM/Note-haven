@@ -18,7 +18,10 @@ const NameUpdater = (host) => {
       });
 
       const updatedUser = await response.json();
-  
+      
+      if(!updatedUser.success){
+        alert(updatedUser.error);
+      }
       console.log('Name updated successfully:', updatedUser);
     } catch (error) {
       console.error('Error updating name:', error);

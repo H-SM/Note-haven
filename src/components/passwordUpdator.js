@@ -22,7 +22,11 @@ const PasswordUpdater = () => {
             });
 
             const updatedUser = await response.json();
-        
+            
+            if(!updatedUser.success){
+                alert(updatedUser.error);
+            }
+
             console.log('Password updated successfully:', updatedUser);
           } catch (error) {
             console.error('Error updating name:', error);
