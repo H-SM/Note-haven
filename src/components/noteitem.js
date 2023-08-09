@@ -8,7 +8,6 @@ function NotesItem(props) {
   const {deletenote} = context;
   return (
       <div className="col-md-3 my-3" >
-      {/* style={{width: "18rem"}} */}
       <div className="card">
         <div className="card-body">
           <div className="d-flex align-items-center">

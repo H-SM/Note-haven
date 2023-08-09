@@ -59,7 +59,7 @@ const NoteState = (props) =>{
           "Content-Type": "application/json",
           "auth-token" : localStorage.getItem("token")
         },
-        body: JSON.stringify({title, description, tag}) 
+        body: JSON.stringify({title, description, tag }) 
       });
       //logic
       let newNotes = JSON.parse(JSON.stringify(notes));
