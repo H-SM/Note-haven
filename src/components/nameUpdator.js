@@ -36,7 +36,7 @@ const NameUpdater = (host) => {
   return (
     <div>
       <h3>Update Name</h3>
-      <form>
+      <form onSubmit={handleNameUpdate}>
         <div className="mb-3">
           <label htmlFor="namer" className="form-label">Name</label>
           <input

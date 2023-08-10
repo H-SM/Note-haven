@@ -35,7 +35,7 @@ const PasswordUpdater = () => {
   return (
     <div>
       <h3>Update Password</h3>
-      <form>
+      <form >
         <div className="mb-3">
           <label htmlFor="oldpassword" className="form-label">Old Password</label>
           <input
