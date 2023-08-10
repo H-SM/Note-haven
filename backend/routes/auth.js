@@ -126,6 +126,34 @@ router.put('/settings/name',[
     res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
 }
 });
+//ROUTE 4: Update profile pic. no verification required
+
+router.put('/settings/pfp',[
+    fetchuser,
+    body('image'),
+],async (req,res)=>{
+    try {
+        const userId = req.user.id;
+        let success = false;
+        // $2a$10$DmF/OrDc8ZaAmzStnTUqH.wUzWan65RUAyQ4l.qh4PtpIvZs/S7PK
+        const { image } = req.body;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(400).json({ success, error: "Check over your credentials again" });
+        }
+
+        const updInfo = {};
+        updInfo.image = image;
+        success = true;
+        const user_upd = await User.findByIdAndUpdate(userId, {$set : updInfo},{new : true});
+        res.json({ success, user_upd });
+}catch(err){
+    console.error(err);
+    res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+}
+});
+
 
 // "name":"h-sm",
 // "oldpassword":"qweewq",
