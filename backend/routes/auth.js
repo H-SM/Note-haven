@@ -98,7 +98,6 @@ router.post('/getuser',fetchuser,  async (req,res)=>{
     }
 });
 
-
 //ROUTE 4: Update user name. no verification required
 
 router.put('/settings/name',[

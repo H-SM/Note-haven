@@ -2,12 +2,31 @@ import React, { useState, useRef, useEffect } from 'react';
 import NameUpdater from './nameUpdator';
 import PasswordUpdater from './passwordUpdator';
 import placeholder from '../assets/placeholder.png';
-import { Cloudinary } from '@cloudinary/url-gen';
 import CloudinaryUploadWidget from './cloudinaryUpload';
-// import { useContext } from 'react';
-// import noteContext from '../context/Notes/noteContext'; 
+
 const About = () => {
   const closeRef = useRef(null);
+  const [userData, setUserData] = useState({}); // Store user data here
+  const host = "http://localhost:5000";
+
+  useEffect(() => {
+    // Fetch user data when the component mounts
+    fetch(`${host}/api/auth/getuser`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token" : localStorage.getItem("token")
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUserData(data); // Store the user data in the state
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
+
 
   return (
     <>
@@ -26,9 +45,10 @@ const About = () => {
       <div className='container'>
         <CloudinaryUploadWidget />
       </div>
-      {/* <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
-                <Image alt="avatar" src={user?.image || placeholder} fill sizes="(max-width: 640px) 100vw, 640px"/>
-      </div> */}
+      <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
+      <img alt="avatar" src={userData?.image || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
+
+      </div>
 
    </>
   )
