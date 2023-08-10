@@ -76,6 +76,30 @@ const NoteState = (props) =>{
     }
   }
 
+  const editimage = async ( id, image ) =>{
+    //API call
+    await fetch(`${host}/api/notes/note/img/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token" : localStorage.getItem("token")
+      },
+      body: JSON.stringify({ image }) 
+    });
+    //logic
+    let newNotes = JSON.parse(JSON.stringify(notes));
+
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
+      if(element._id === id){
+        newNotes[index].image = image;
+        break;
+      }
+    setNotes(newNotes);
+  }
+}
+
+
     return (
     <NoteContext.Provider value={{notes,setNotes, addnote, deletenote, editnote,getallnote}}>
         {props.children}

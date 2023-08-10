@@ -93,5 +93,30 @@ router.delete('/deletenote/:id', fetchuser,
   }
 );
 
+//ROUTE 3: change image of the note
+router.put('/note/img/:id',[
+  fetchuser,
+  body('image'),
+],async (req,res)=>{
+  try {
+      let success = false;
 
+      const { image } = req.body;
+      let note =await Note.findById(req.params.id);
+      if(!note) res.status(404).json({ success , message : "USER NOT FOUND!"});
+
+      if(note.user.toString() !== req.user.id){
+        return res.status(401).send("NOT ALLOWED");
+      }
+
+      const note_upd = {};
+      note_upd.image = image;
+      success = true;
+      const new_note = await Note.findByIdAndUpdate(req.params.id, {$set : note_upd},{new : true});
+      res.json({ success, new_note });
+}catch(err){
+  console.error(err);
+  res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+}
+});
 module.exports = router;

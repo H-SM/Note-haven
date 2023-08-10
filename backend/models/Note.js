@@ -22,6 +22,9 @@ const NotesSchema = new Schema({
         type : Date, 
         default : Date.now
     },
+    image: {
+        type : String, 
+    },
     updatedTime: { 
         type: Date,
         default: Date.now

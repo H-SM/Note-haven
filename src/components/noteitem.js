@@ -4,7 +4,7 @@ import contextValue from "../context/Notes/noteContext.js";
 
 function NotesItem(props) {
   const context = useContext(contextValue);
-  const {note, updateNote, showAlert} = props;
+  const {note, updateNote, showAlert, editimage } = props;
   const {deletenote} = context;
   return (
       <div className="col-md-3 my-3" >

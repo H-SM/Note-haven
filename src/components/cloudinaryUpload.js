@@ -5,6 +5,11 @@ const CloudinaryUploadWidget = () => {
   const uploadPreset = "dfr2meo6";
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+    // Token is not available, handle accordingly
+    return;
+    }
     const myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: cloudName,
@@ -45,12 +50,18 @@ const CloudinaryUploadWidget = () => {
       }
     };
 
-    document.getElementById("upload_widget").addEventListener("click", handleClick);
+    const uploadButton = document.getElementById("upload_widget");
+  if (uploadButton) {
+    uploadButton.addEventListener("click", handleClick);
+  }
 
-    return () => {
-      document.getElementById("upload_widget").removeEventListener("click", handleClick);
-    };
-  }, []); // Empty dependency array to ensure the effect runs only once
+  // Cleanup function
+  return () => {
+    if (uploadButton) {
+      uploadButton.removeEventListener("click", handleClick);
+    }
+  };
+}, []);
 
   return (
     <button id="upload_widget" className="cloudinary-button">
