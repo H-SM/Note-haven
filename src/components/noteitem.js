@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import contextValue from "../context/Notes/noteContext.js";
+import CloudinaryUploadNoteImage from './NoteCloudinaryUpload.js';
 
 
 function NotesItem(props) {
   const context = useContext(contextValue);
-  const {note, updateNote, showAlert, editimage } = props;
-  const {deletenote} = context;
+  const {note, updateNote, showAlert } = props;
+  const {deletenote } = context;
   return (
       <div className="col-md-3 my-3" >
       <div className="card">
@@ -14,6 +15,9 @@ function NotesItem(props) {
           <h5 className="card-title">{note.title}</h5>
           <i className="fa-solid fa-trash mx-2" onClick={()=>{deletenote(note._id); showAlert("Deleted successfully!", "success");}}></i>
           <i className="fa-regular fa-pen-to-square mx-2" onClick={()=>{updateNote(note);}}></i>
+          </div>
+          <div>
+            <CloudinaryUploadNoteImage note={note}/>
           </div>
           <p className="card-text">{note.description}</p>
         </div>
