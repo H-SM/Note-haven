@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import contextValue from "../context/Notes/noteContext.js";
+import { Link } from 'react-router-dom';
 
 function NotesItem(props) {
   const context = useContext(contextValue);
@@ -12,7 +13,8 @@ function NotesItem(props) {
           <div className="d-flex align-items-center">
           <h5 className="card-title">{note.title}</h5>
           <i className="fa-solid fa-trash mx-2" onClick={()=>{deletenote(note._id); showAlert("Deleted successfully!", "success");}}></i>
-          <i className="fa-regular fa-pen-to-square mx-2" onClick={()=>{updateNote(note);}}></i>
+          {/* onClick={()=>{updateNote(note);}} */}
+          <Link to={`/note/${note._id}`}><i className="fa-regular fa-pen-to-square mx-2" ></i></Link>
           </div>
           <p className="card-text">{note.description}</p>
           {note.image && <img src={note.image} alt='img' className='img-fluid'/>}

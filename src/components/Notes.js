@@ -102,7 +102,7 @@ const CloudinaryUploadWidget = () => {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
+                  {/* <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -132,6 +132,8 @@ const CloudinaryUploadWidget = () => {
                   <button type="button" className="btn btn-secondary"           data-bs-dismiss="modal" ref={closeRef}>Close</button>
                   <button type="button" className="btn btn-primary" onClick={handleclick} disabled={note.etitle.length<5 || note.edescription.length<5} >Update Note</button>
                   <CloudinaryUploadWidget/>
+                 */}
+                <h3>something</h3>
                 </div>
               </div>
             </div>
@@ -142,7 +144,7 @@ const CloudinaryUploadWidget = () => {
       {(notes.length===0) && "No notes to display"}
       </div>
       {notes.map((note) => {
-        return <Noteitem note={note} key={note._id} updateNote={updateNote} showAlert={showAlert}/>
+        return <Noteitem note={note} key={note._id} updateNote={updateNote} showAlert={showAlert} />
       })}
     </div>
     </>
