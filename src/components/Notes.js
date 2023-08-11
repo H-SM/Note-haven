@@ -20,17 +20,18 @@ function Notes(props) {
   },[]);
   const ref = useRef(null);
   const closeRef = useRef(null);
-  const [note, setNote] = useState({id: "", etitle : "", edescription : "", etag : ""});
+  const [note, setNote] = useState({id: "", etitle : "", edescription : "", etag : "", eimage: ""});
 
   const updateNote = (currentNote) => {
     ref.current.click();
-    setNote({id:currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag, });
+
+    setNote({id:currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag, eimage: currentNote.image });
     // props.showAlert("Note updated successfully!", "success");
   }
 
 const handleclick= (e) => {
     console.log("this will change the note to -> \n", note ,"\n in the next commits");
-    editnote(note.id, note.etitle, note.edescription, note.etag);
+    editnote(note.id, note.etitle, note.edescription, note.etag, note.eimage);
     ref.current.click();
     props.showAlert("Note updated successfully!", "success");
 
@@ -39,6 +40,57 @@ const handleclick= (e) => {
 const onChange= (e) =>{
     setNote({...note,[e.target.name] : e.target.value});
 }
+
+const CloudinaryUploadWidget = () => {
+  const cloudName = "defrwqxv6";
+  const uploadPreset = "dfr2meo6";
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+    // Token is not available, handle accordingly
+    return;
+    }
+    const myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: cloudName,
+        uploadPreset: uploadPreset
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setNote(prevNote => ({
+            ...prevNote,
+            eimage: result.info.secure_url
+          }));
+        }
+      }
+    );  
+
+    const handleClickWidget = () => {
+      myWidget.open();
+    };
+
+    const uploadButton = document.getElementById("upload_widget");
+  if (uploadButton) {
+    uploadButton.addEventListener("click", handleClickWidget);
+  }
+
+  // Cleanup function
+  return () => {
+    if (uploadButton) {
+      uploadButton.removeEventListener("click", handleClickWidget);
+    }
+  };
+}, []);
+
+  return (
+    <button id="upload_widget" className="cloudinary-button">
+      Upload Image
+    </button>
+  );
+};
+
+
   return (
     <>
     <AddNote showAlert={showAlert}/>
@@ -79,6 +131,7 @@ const onChange= (e) =>{
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary"           data-bs-dismiss="modal" ref={closeRef}>Close</button>
                   <button type="button" className="btn btn-primary" onClick={handleclick} disabled={note.etitle.length<5 || note.edescription.length<5} >Update Note</button>
+                  <CloudinaryUploadWidget/>
                 </div>
               </div>
             </div>
