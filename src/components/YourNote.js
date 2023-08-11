@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const YourNote = (props) => {
+const YourNote = () => {
+  const location = useLocation();
+  const note = location.state.note;
   const [updatedNote, setUpdatedNote] = useState({
-    etitle: props.note.etitle,
-    edescription: props.note.edescription,
-    etag: props.note.etag,
+    etitle: note.etitle,
+    edescription: note.edescription,
+    etag: note.etag,
+    eimage: note.eimage,
   });
 
   const closeRef = useRef(null);

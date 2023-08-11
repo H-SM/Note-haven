@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/about" element={<About/>}/>
         <Route exact path="/login" element={<Login showAlert={showAlert}/>}/>
         <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/>
-        <Route path="/note/:id" component={YourNote} />
+        <Route path="/note/:id" render={(props) => <YourNote {...props} note={props.location.state.note} />} />
         {/* <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/> */}
       </Routes>
       </div>
