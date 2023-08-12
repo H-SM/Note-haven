@@ -1,25 +1,43 @@
-import React,{ useContext , useState } from 'react'
+import React,{ useContext , useRef, useState } from 'react'
 import contextValue from "../context/Notes/noteContext.js";
 
 function AddNote(props) {
     const context = useContext(contextValue);
     const {addnote} = context;
+    const ref = useRef(null);
+    const closeRef = useRef(null);
     const [note, setNote] = useState({title : "", description : "", tag : ""});
     const handleclick= (e) => {
         e.preventDefault();
         addnote(note.title, note.description, note.tag);
         setNote({title : "", description : "", tag : ""});
-      props.showAlert("Note added successfully!", "success");
+        props.showAlert("Note added successfully!", "success");
+        closeRef.current.click();
     }
 
-    const onChange= (e) =>{
+
+
+    const onChange= (e) =>{ 
         setNote({...note,[e.target.name] : e.target.value});
-        //any name of the component attribute is being changed, make the changes over it like a change over description will change the target element of description to the new value it got in the feild
     }
   return (
+    <>
+    <button ref={ref} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+  Add a Note
+</button>
+  <div className="modal fade" id="editModal" tabIndex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
     <div>
       <div className="container my-3">
-      <h3> Add your Note </h3>
+    <div className="d-flex justify-content-between align-items-center">
+      <h5 className="modal-title">Add your Note</h5>
+      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={closeRef}>
+        {/* <span aria-hidden="true">&times;</span> */}
+      </button>
+    </div>
+  </div>
+  <div className="modal-body">
       <form>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
@@ -37,6 +55,10 @@ function AddNote(props) {
       </form>
       </div>
     </div>
+    </div>
+    </div>
+    </div>
+    </>
   )
 }
 
