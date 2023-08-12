@@ -21,7 +21,7 @@ function Notes(props) {
   const ref = useRef(null);
   const closeRef = useRef(null);
   const [note, setNote] = useState({id: "", etitle : "", edescription : "", etag : "", eimage: ""});
-
+  
   const updateNote = (currentNote) => {
     ref.current.click();
 

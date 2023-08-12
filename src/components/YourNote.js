@@ -1,16 +1,63 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import contextValue from "../context/Notes/noteContext.js";
+import placeholder from '../assets/placeholder.png';
 
 const YourNote = () => {
-  const location = useLocation();
-  const note = location.state.note;
+  const context = useContext(contextValue);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [note, setNote] = useState({});
   const [updatedNote, setUpdatedNote] = useState({
-    etitle: note.etitle,
-    edescription: note.edescription,
-    etag: note.etag,
-    eimage: note.eimage,
+      etitle: "",
+      edescription: "",
+      etag: "",
+      eimage: "",
   });
+  const { editnote } = context; 
+  useEffect(() => {
+      const getnote = async (id) => {
+          const host = "http://localhost:5000";
+          const req = await fetch(`${host}/api/notes/getnote/${id}`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json",
+                  "auth-token" : localStorage.getItem("token")
+              }
+          });
+          const response = await req.json();
+          // console.log(response.note);
 
+          if (response.success === 'NOTE given' && response.note) {
+              setNote(response.note);
+              setUpdatedNote({
+                etitle: response.note.title,
+                edescription: response.note.description,
+                etag: response.note.tag,
+                eimage: response.note.image,
+            });
+
+          } else {
+              console.error("Error fetching note data");
+          }
+      };
+
+      const fetchNote = async () => {
+          try {
+              getnote(id);
+              
+          } catch (error) {
+              console.error(error);
+          }
+      };
+
+      fetchNote();
+  }, [id]);
+
+  useEffect(() => {
+    console.log("hi" , note);
+  }, [updatedNote]);
+  
   const closeRef = useRef(null);
 
   const onChange= (e) =>{
@@ -42,7 +89,8 @@ const YourNote = () => {
             }
           );  
       
-          const handleClickWidget = () => {
+          const handleClickWidget = (e) => {
+            e.preventDefault(); 
             myWidget.open();
           };
       
@@ -63,21 +111,21 @@ const YourNote = () => {
           Upload Image
         </button>
       );
-    };
-
-  const handleUpdate = () => {
-    // Perform update logic here
-    // You can use the updatedNote state to send the updated data to your backend API
-  };
+    }; 
 
   const handleclick= (e) => {
     // console.log("this will change the note to -> \n", note ,"\n in the next commits");
-    // editnote(updatedNote.id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage);
+    editnote(note._id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage);
+    console.log("note given to bg ->" , updatedNote);
+    setNote(updatedNote);
     // ref.current.click();
     // props.showAlert("Note updated successfully!", "success");
+    navigate("/");
     }
 
-
+    if(!updatedNote){
+      return <div>Loading...</div>
+    }
   return (
     <div>
       <h3>Edit Your Note</h3>
@@ -104,16 +152,24 @@ const YourNote = () => {
             <input type="text" className="form-control" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>          
         <div className="my-3">
-            <button type="button" className="btn btn-secondary"           data-bs-dismiss="modal" ref={closeRef}>Close</button>
+          <Link to="/" aria-current="page">
+            <button type="button" className="btn btn-secondary">
+              Close
+            </button>
+          </Link>
             <button type="button" className="btn btn-primary" onClick={handleclick} disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} >Update Note</button>
             <CloudinaryUploadWidget/>
-        <button
+            <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
+              <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
+
+      </div>
+        {/* <button
           type="button"
           className="btn btn-primary"
           onClick={handleUpdate}
         >
           Update Note
-        </button>
+        </button> */}
         </div>
       </form>
       </div>

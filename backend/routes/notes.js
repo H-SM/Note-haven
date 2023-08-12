@@ -93,6 +93,27 @@ router.delete('/deletenote/:id', fetchuser,
   }
 );
 
+
+router.get('/getnote/:id', fetchuser,
+  async (req, res) => {
+    try {
+    //find the note to be given
+    let note =await Note.findById(req.params.id);
+    if(!note) res.status(404).send("NOT FOUND!");
+
+    //allowed getting if the user owns the note
+    if(note.user.toString() !== req.user.id){
+        return res.status(401).send("NOT ALLOWED");
+    }
+
+    res.json({"success" : "NOTE given", "note" : note});
+    } catch (err) {
+    console.error(err);
+    res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
+  }
+  }
+);
+
 // //ROUTE 3: change image of the note
 // router.put('/note/img/:id',[
 //   fetchuser,
