@@ -22,14 +22,14 @@ router.post("/addnote", fetchuser,[
   ],
   async (req, res) => {
     try {
-    const { title, description, tag } = req.body;
+    const { title, description, tag, image } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-      const note = new Note({
-        title, description, tag, user: req.user.id,
-      });
+    const note = new Note({
+        title, description, tag, user: req.user.id, image
+    });
       const savedNote = await note.save();
       res.json(savedNote);
     } catch (err) {
