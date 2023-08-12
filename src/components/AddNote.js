@@ -10,11 +10,7 @@ function AddNote(props) {
     const [note, setNote] = useState({title : "", description : "", tag : "", image: ""});
     const handleclick= (e) => {
         e.preventDefault();
-        if(note.image === ""){
-        addnote(note.title, note.description, note.tag);
-        }else{
         addnote(note.title, note.description, note.tag, note.image);
-        }
         setNote({title : "", description : "", tag : "", image: ""});
         props.showAlert("Note added successfully!", "success");
         closeRef.current.click();

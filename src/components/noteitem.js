@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import contextValue from "../context/Notes/noteContext.js";
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import YourNote from './YourNote.js';
+import placeholder from '../assets/placeholder.png';
 
 function NotesItem(props) {
   const context = useContext(contextValue);
@@ -26,7 +27,7 @@ function NotesItem(props) {
 
           </div>
           <p className="card-text">{note.description}</p>
-          {note.image && <img src={note.image} alt='img' className='img-fluid'/>}
+          {note.image ? <img src={note.image} alt='img' className='img-fluid'/> : <img src={placeholder} alt='img' className='img-fluid'/>}
         </div>
       </div>
     </div>

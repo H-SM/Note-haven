@@ -27,9 +27,19 @@ router.post("/addnote", fetchuser,[
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const note = new Note({
-        title, description, tag, user: req.user.id, image
-    });
+    
+    let noteFields = {
+      title,
+      description,
+      tag,
+      user: req.user.id,
+    };
+
+    if (image !== "") {
+      noteFields.image = image;
+    }
+
+      const note = new Note(noteFields);
       const savedNote = await note.save();
       res.json(savedNote);
     } catch (err) {
