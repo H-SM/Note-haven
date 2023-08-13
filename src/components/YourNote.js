@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import contextValue from "../context/Notes/noteContext.js";
 import placeholder from '../assets/placeholder.png';
@@ -54,11 +54,10 @@ const YourNote = () => {
       fetchNote();
   }, [id]);
 
-  useEffect(() => {
-    console.log("hi" , note);
-  }, [updatedNote]);
+  // useEffect(() => {
+    // console.log("hi" , note);
+  // }, [updatedNote]);
   
-  const closeRef = useRef(null);
 
   const onChange= (e) =>{
     setUpdatedNote({...updatedNote,[e.target.name] : e.target.value});

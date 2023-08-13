@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import contextValue from "../context/Notes/noteContext.js";
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import YourNote from './YourNote.js';
+import { useNavigate } from 'react-router-dom';
 import placeholder from '../assets/placeholder.png';
 
 function NotesItem(props) {

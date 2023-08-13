@@ -103,7 +103,8 @@ function AddNote(props) {
         <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleclick}>Add Note</button>
         <CloudinaryUploadWidget/>
         </div>
-        {note.image && <img src={note.image} alt='img' className='img-fluid'/>}
+        {note.image ? <img src={note.image} alt='img' className='img-fluid'/> :
+        <img src={placeholder} alt='img' className='img-fluid'/>}
       </form>
       </div>
     </div>
