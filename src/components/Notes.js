@@ -92,38 +92,7 @@ const CloudinaryUploadWidget = () => {
 
   return (
     <>
-                <AddNote showAlert={showAlert}/>
-                  {/* <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                <div>
-                    <div className="container my-3">
-                    <h3> Add your Note </h3>
-                    <form>
-                      <div className="mb-3">
-                        <label htmlFor="etitle" className="form-label">Title</label>
-                        <input type="text" className="form-control" id="etitle" name="etitle"                aria-describedby="emailHelp" value={note.etitle} onChange={onChange} placeholder="Your Title"/>
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="edesc" className="form-label">Description</label>
-                        <input type="text" className="form-control" id="edescription" value={note.edescription}  name="edescription" onChange={onChange} placeholder="Your Description"/>
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label" htmlFor="etag">Tag</label>
-                        <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} placeholder="Your Tag"/>
-                      </div>
-                    </form>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary"           data-bs-dismiss="modal" ref={closeRef}>Close</button>
-                  <button type="button" className="btn btn-primary" onClick={handleclick} disabled={note.etitle.length<5 || note.edescription.length<5} >Update Note</button>
-                  <CloudinaryUploadWidget/>
-                 */}
+    <AddNote showAlert={showAlert}/>
     <div className="row my-3">
       <h3> Your Notes </h3>
       <div className="container mx-2">

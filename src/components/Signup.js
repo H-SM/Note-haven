@@ -9,18 +9,19 @@ function Signup(props) {
         const host = "http://localhost:5000";
         const {name, email, password} = credentails;
         console.log(credentails) ;
-        const response = await fetch(`${host}/api/auth/createuser`, {
+        const req = await fetch(`${host}/api/auth/createuser`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({name , email ,password })
             });
-        const json = await response.json();
-        console.log(json);
-        if(json.success){
+        const response = await req.json();
+        console.log(response);
+        if(response.success){
             //save the auth_token and redirect
-            localStorage.setItem('token', json.auth_token);
+            localStorage.removeItem('token');
+            localStorage.setItem('token', response.jwt_token);
             navigate("/");
             props.showAlert("Account created successfully!", "success");
         }else{
