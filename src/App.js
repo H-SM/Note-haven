@@ -9,6 +9,7 @@ import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import YourNote from './components/YourNote';
+import Sidenav from "./components/Sidenav";
 
 function App() {
   const [alert , setAlert ] = useState(null);
@@ -24,12 +25,15 @@ function App() {
   };
 
   return (
+    <div className="bg-primary-black w-full h-[100vh]">
     <Router>
-    <>
     <NoteState>
-      <Navbar/>
-      <Alert alert={alert}/>
-      <div className="container my-3">
+    <div className="flex flex-between">
+    <Sidenav/>
+    <div className="flex flex-col w-full">
+    <Navbar />
+    <Alert alert={alert} />
+    <div className="container my-3">
       <Routes>
         <Route exact path="/" element={<Home showAlert={showAlert} />}/>
         <Route exact path="/about" element={<About/>}/>
@@ -37,12 +41,13 @@ function App() {
         <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/>
         <Route path="/note/:id" element={<YourNote />} />
         {/* <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/> */}
-      </Routes>
-     
-      </div>
-      </NoteState>
-    </>
-    </Router>
+        </Routes>
+              </div>
+            </div>
+          </div>
+        </NoteState>
+      </Router>
+    </div>
   );
 }
 

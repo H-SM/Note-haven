@@ -3,9 +3,11 @@ import NameUpdater from './nameUpdator';
 import PasswordUpdater from './passwordUpdator';
 import placeholder from '../assets/placeholder.png';
 import CloudinaryUploadWidget from './cloudinaryUpload';
+import { useNavigate } from 'react-router-dom/dist';
 
 const About = () => {
   const closeRef = useRef(null);
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({}); // Store user data here
   const host = "http://localhost:5000";
 
@@ -27,6 +29,10 @@ const About = () => {
       });
   }, []);
 
+  const handleclick= (e) => {
+    setUserData({});
+    navigate("/");
+    }
 
   return (
     <>
@@ -37,7 +43,7 @@ const About = () => {
             <PasswordUpdater />
           </div>
         </div>
-        <button type="button" className="mx-2 my-3 btn btn-secondary" data-bs-dismiss="modal" ref={closeRef}>
+        <button type="button" className="mx-2 my-3 btn btn-secondary" data-bs-dismiss="modal" onClick={handleclick}>
           Close
         </button>
       </div>
@@ -45,7 +51,7 @@ const About = () => {
       <div className='container'>
         <CloudinaryUploadWidget />
       </div>
-      <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
+      <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
       <img alt="avatar" src={userData?.image || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
 
       </div>

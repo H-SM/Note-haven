@@ -158,10 +158,9 @@ const YourNote = () => {
           </Link>
             <button type="button" className="btn btn-primary" onClick={handleclick} disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} >Update Note</button>
             <CloudinaryUploadWidget/>
-            <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
-              <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
-
       </div>
+            <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
+              <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
         {/* <button
           type="button"
           className="btn btn-primary"
