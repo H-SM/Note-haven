@@ -43,7 +43,7 @@ const Navbar = () => {
 }
   return (
 <>
-<nav className='bg-zinc-800 w-full'>
+<nav className='bg-zinc-800/40 w-full'>
     <div className='pl-[0.5rem] pr-[0.5rem] max-w-[80rem] ml-auto mr-auto '>
       <div className='justify-between items-center h-[6rem] flex relative'>
         {/* <div className='flex items-center pl-[0.5rem] pr-[0.5rem]'>

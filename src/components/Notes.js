@@ -34,6 +34,7 @@ function Notes(props) {
         // return <Noteitem note={note} key={note._id} updateNote={updateNote} showAlert={showAlert} />
         return <Noteitem note={note} key={note._id} showAlert={showAlert} />
       })}
+      <div className='w-full my-[5rem]'></div>
     </div>
 
     </>
