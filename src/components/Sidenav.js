@@ -11,7 +11,7 @@ const Sidenav = () => {
     navigate("/login");
   }
   const handlesetting= () =>{
-    navigate("/about");
+    navigate("/settings");
   }
   const handlehome= () =>{
     navigate("/");

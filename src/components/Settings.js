@@ -5,7 +5,7 @@ import placeholder from '../assets/placeholder.png';
 import CloudinaryUploadWidget from './cloudinaryUpload';
 import { useNavigate } from 'react-router-dom/dist';
 
-const About = () => {
+const Settings = () => {
   const closeRef = useRef(null);
   const navigate = useNavigate();
   const [userData, setUserData] = useState({}); // Store user data here
@@ -60,4 +60,4 @@ const About = () => {
   )
 }
 
-export default About;
+export default Settings;

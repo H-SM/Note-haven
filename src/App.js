@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 import './App.css';
 import Navbar from "./components/Navbar";
-import About from "./components/About";
+import Settings from "./components/Settings";
 import Home from "./components/Home";
 import NoteState from "./context/Notes/NoteState";
 import Alert from "./components/Alert";
@@ -24,30 +24,41 @@ function App() {
     }, 1200);
   };
 
+
   return (
-    <div className="bg-primary-black w-full h-[100vh] overflow-hidden">
     <Router>
+    <div className="bg-primary-black w-full h-[100vh] overflow-hidden">
     <NoteState>
-    <div className="flex flex-between">
-    <Sidenav/>
-    <div className="flex flex-col w-full">
-    <Navbar />
-    <Alert alert={alert} />
-    <div className="container my-3">
+    <div>
       <Routes>
-        <Route exact path="/" element={<Home showAlert={showAlert} />}/>
-        <Route exact path="/about" element={<About/>}/>
+        <Route exact path="/" element={<>
+          <div className="flex flex-between">
+          <Sidenav />
+          <div className="flex flex-col w-full">
+          <Navbar />
+          <Alert alert={alert}/>
+          <Home showAlert={showAlert} />
+          </div>
+          </div>
+        </>}/>
+        <Route exact path="/settings" element={<>
+          <div className="flex flex-between">
+          <Sidenav />
+          <div className="flex flex-col w-full">
+          <Settings/>
+          </div>
+          </div>
+
+          </>}/>
         <Route exact path="/login" element={<Login showAlert={showAlert}/>}/>
         <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/>
         <Route path="/note/:id" element={<YourNote />} />
         {/* <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/> */}
         </Routes>
               </div>
-            </div>
-          </div>
         </NoteState>
-      </Router>
     </div>
+    </Router>
   );
 }
 

@@ -128,8 +128,8 @@ const YourNote = () => {
   return (
     <div>
       <h3>Edit Your Note</h3>
-      <form>
-        <div className="mb-3">
+      <form className='text-white'>
+        <div className="mb-3 ">
           <label htmlFor="etitle" className="form-label">
             Title
           </label>

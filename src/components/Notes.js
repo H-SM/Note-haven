@@ -26,15 +26,16 @@ function Notes(props) {
       {/* <h1 className="text-3xl font-bold text-white font-mono ">
       Your Notes
       </h1> */}
-      <div className="container mx-2 bg-primary-black">
-      {(notes.length===0) && "No notes to display"}
-      </div>
-    <AddNote showAlert={showAlert}/>
+      <AddNote showAlert={showAlert}/>
+      {(notes.length===0) && <div className="container mx-2 bg-primary-black">
+      "No notes to display"
+      </div>}
       {notes.map((note) => {
         // return <Noteitem note={note} key={note._id} updateNote={updateNote} showAlert={showAlert} />
         return <Noteitem note={note} key={note._id} showAlert={showAlert} />
       })}
-      <div className='w-full my-[5rem]'></div>
+      <div className='w-full my-[5rem]'>
+      </div>
     </div>
 
     </>
