@@ -70,9 +70,14 @@ function AddNote(props) {
     }
   return (
     <>
-    <button ref={ref} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
-  Add a Note
-</button>
+    <div ref={ref} type="button" className="border-2 border-slate-400  justify-center items-center text-bold font-mono text-[16px] text-secondary-white w-[18rem] h-[18rem] border-dashed hover:bg-secondary-white/10 rounded-lg " data-bs-toggle="modal" data-bs-target="#editModal">
+    <div className='hover:scale-110 flex flex-col justify-center items-center h-full transition ease-linear transition-150'>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-11">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <p>Add a Note</p>
+    </div>
+</div>
   <div className="modal fade" id="editModal" tabIndex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div className="modal-dialog">
       <div className="modal-content">

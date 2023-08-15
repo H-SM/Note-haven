@@ -52,7 +52,7 @@ const Navbar = () => {
             </div>
         </div> */}
         <div className='pl-[0.5rem] pr-[0.5rem] justify-start flex flex-grow flex-shrink flex-0'>
-            <div className='max-w-[32rem] w-full '>
+            <div className='max-w-[45rem] w-full '>
                 <label for="search" className='absolute w-1 h-1 p-0 m-n1 overflow-hidden whitespace-nowrap border-0'>Search</label>
                 <div className='relative'>
                     <div className='pl-[0.75rem] items-center flex flex-row left-0 top-0 bottom-0 absolute pointer-events-none text-white-100'>

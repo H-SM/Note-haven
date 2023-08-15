@@ -25,7 +25,7 @@ function App() {
   };
 
   return (
-    <div className="bg-primary-black w-full h-[100vh]">
+    <div className="bg-primary-black w-full h-[100vh] overflow-hidden">
     <Router>
     <NoteState>
     <div className="flex flex-between">
