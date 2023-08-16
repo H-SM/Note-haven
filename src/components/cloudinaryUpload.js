@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const CloudinaryUploadWidget = () => {
+const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
   const cloudName = "defrwqxv6";
   const uploadPreset = "dfr2meo6";
 
@@ -44,6 +44,10 @@ const CloudinaryUploadWidget = () => {
         if(!updatedUser.success){
           alert(updatedUser.error);
         }
+        else{
+          onUploadSuccess(url);
+          console.log("we gave the new url : ", url );
+        }
         console.log('pfp updated successfully:', updatedUser);
       } catch (error) {
         console.error('Error updating name:', error);
@@ -61,11 +65,15 @@ const CloudinaryUploadWidget = () => {
       uploadButton.removeEventListener("click", handleClick);
     }
   };
-}, []);
+}, [onUploadSuccess]);
 
   return (
-    <button id="upload_widget" className="cloudinary-button">
+    <button id="upload_widget" className="cloudinary-button relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+    <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
+    <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+    <span className="relative text-[14px]">
       Upload
+    </span>
     </button>
   );
 };
