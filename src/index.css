@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@600&family=Poppins:wght@100;300;500&display=swap');
 
 @layer utilities {
   /* Chrome, Safari and Opera */

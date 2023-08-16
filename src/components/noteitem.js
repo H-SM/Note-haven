@@ -82,10 +82,10 @@ const formatTime = (isoTime) => {
         <img
           src={note.image || placeholder}
           alt="img"
-          className="w-3/4 h-auto max-h-[250px] object-contain  mt-10 hover:scale-105 transition ease-in-out transition-200"
+          className="w-[70%] h-auto max-h-[250px] object-contain  mt-7 hover:scale-105 transition ease-in-out transition-200"
         />
-        <h5 className="text-bold font-sans text-[27px] leading-[30px] my-2">{note.title}</h5>
-        <p className="card-text">{formatTime(note.date)}</p>
+        <h5 className="text-bold font-Arimo text-[27px] leading-[28px] my-3">{note.title}</h5>
+        <p className="card-text ">{formatTime(note.date)}</p>
       </div>
     </div>
   </div>

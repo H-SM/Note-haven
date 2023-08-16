@@ -27,7 +27,7 @@ function Notes(props) {
       Your Notes
       </h1> */}
       <AddNote showAlert={showAlert}/>
-      {(notes.length===0) && <div className="container mx-2 bg-primary-black">
+      {(notes.length===0) && <div className="container mx-2 bg-primary-black text-white">
       "No notes to display"
       </div>}
       {notes.map((note) => {
