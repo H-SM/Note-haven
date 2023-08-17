@@ -1,5 +1,6 @@
 import React,{ useState} from 'react'
 import { useNavigate } from "react-router-dom";
+import logo from '../assets/Logo.png';
 
 function Signup(props) {
   const [ credentails , setCredentails ] =useState({name: "", email: "", password: "", cpassword: ""});
@@ -32,7 +33,10 @@ function Signup(props) {
     setCredentails({...credentails,[e.target.name] : e.target.value});
 }
   return (
-    <div className="container">
+    <div className="text-white w-screen h-screen relative">
+    <div className="flex flex-col gap-11 justify-center items-center w-full h-full z-20">
+    <img src={logo} alt="img" className="z-20 max-w-[400px]"/>
+    <div className="z-20 mt-6 bg-black/30 w-[45vh] rounded-2xl ring-2 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 hover:[#e49012c8]/40">
       <form onSubmit={handleSubmit}>
       <div className="mb-3">
     <label htmlFor="name" className="form-label">Name</label>
@@ -53,7 +57,9 @@ function Signup(props) {
   </div>
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
+</div>
     </div>
+  </div>
   )
 }
 
