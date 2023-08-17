@@ -26,7 +26,8 @@ module.exports = {
         "hero-pattern": "url('/src/assets/herobg.png')",
       },
       fontFamily: {
-        'Arimo': ['Arimo', 'sans-serif']
+        'Arimo': ['Arimo', 'sans-serif'],
+        "Oswald": ['Oswald', 'sans-serif'],
       },
 
       transitionTimingFunction: {

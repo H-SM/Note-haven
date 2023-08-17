@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NameUpdator = ({ props }) => {
+const NameUpdator = ({ handleUploadNameSuccess }) => {
 
   const [namer, setNamer] = useState({name: ""});
 
@@ -24,7 +24,7 @@ const NameUpdator = ({ props }) => {
       }
       else{
       // useEffect(() => {
-        props.handleUploadNameSuccess(namer.name);
+        handleUploadNameSuccess(namer.name);
         console.log("we gave the new name : ", namer );
       // }, [onUploadSuccess]);
       }
@@ -44,7 +44,7 @@ const NameUpdator = ({ props }) => {
 
     <div className='text-white'>
       <h3 className='text-[24px] font-bold mx-1 my-2'>Update Name</h3>
-      <form onSubmit={handleNameUpdate}>
+      <form>
         <div className="mb-3">
           <label htmlFor="namer" className="form-label text-[18px] font-normal text-white/50 ">Name</label>
           <input
