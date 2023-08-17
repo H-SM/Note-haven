@@ -44,7 +44,7 @@ function Login(props) {
       />
     <div className="flex flex-col gap-11 justify-center items-center w-full h-full z-20">
     <img src={logo} alt="img" className="z-20 max-w-[400px]"/>
-    <div className="z-20 mt-6 bg-black/30 w-[45vh] rounded-2xl ring-2 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 hover:[#e49012c8]/40">
+    <div className="z-20 mt-6 bg-black/40 w-[45vh] rounded-2xl ring-2 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 hover:[#e49012c8]/40">
     <p className="text-white px-6 pt-11 text-[40px] font-Oswald font-bold">Welcome Back!</p>
   <span className="font-semibold text-[17px] px-8 text-secondary-white">Don't have an account? <a onClick={handleClick} className="hover:cursor-pointer text-[#f89a0fe6]/80 hover:text-[#f89a0fe6] inline-block relative hover:underline">
   create a new account
@@ -59,7 +59,7 @@ function Login(props) {
           </label>
           <input
             type="email"
-            className="text-[#ffffff] font-mono leading-[25px] pr-[1rem] pl-[1rem] pt-[0.375rem] pb-[0.375rem] bg-[#684d25c8]/20 border-0 rounded-md ring-1 ring-[#e49012c8]/50 w-full block text-[14px] focus:outline-none focus:shadow-md focus:shadow-orange-400/40 transition ease-in-out duration-300"
+            className="text-[#ffffff] font-mono leading-[28px] pr-[1rem] pl-[1rem] pt-[0.375rem] pb-[0.375rem] bg-[#684d25c8]/20 border-0 rounded-md ring-1 ring-[#e49012c8]/50 w-full block text-[18px] focus:outline-none focus:shadow-md focus:shadow-orange-400/40 transition ease-in-out duration-300"
             id="email"
             name="email"
             aria-describedby="emailHelp"
@@ -67,7 +67,7 @@ function Login(props) {
             onChange={onChange}
             placeholder="Your Email"
           />
-          <div id="emailHelp" className="form-text font-mono text-[13px] text-secondary-white">
+          <div id="emailHelp" className="form-text font-mono text-[15px] mt-1 text-secondary-white">
             We'll never share your email with anyone else.
           </div>
         </div>
@@ -77,7 +77,7 @@ function Login(props) {
           </label>
           <input
             type="password"
-            className="text-[#ffffff] font-mono leading-[25px] pr-[1rem] pl-[1rem] pt-[0.375rem] pb-[0.375rem] bg-[#684d25c8]/20 border-0 rounded-md ring-1 ring-[#e49012c8]/50 w-full block text-[14px] focus:outline-none focus:shadow-md focus:shadow-orange-400/40 transition ease-in-out duration-300"
+            className="text-[#ffffff] font-mono leading-[28px] pr-[1rem] pl-[1rem] pt-[0.375rem] pb-[0.375rem] bg-[#684d25c8]/20 border-0 rounded-md ring-1 ring-[#e49012c8]/50 w-full block text-[18px] focus:outline-none focus:shadow-md focus:shadow-orange-400/40 transition ease-in-out duration-300"
             value={credentails.password}
             onChange={onChange}
             id="password"
