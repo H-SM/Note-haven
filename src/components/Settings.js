@@ -70,7 +70,7 @@ const Settings = () => {
   <div className='my-[50px] w-full'></div>
   <div className='flex flex-row justify-center items-start gap-11'>
     <div className=' mx-5 my-3'>
-    <h1 className='font-bold font-mono text-white text-[40px]'>Hello, {userData.name}</h1>
+    <h1 className='semi-bold font-mono text-white text-[40px] flex gap-2'>Hello, <p className='font-bold'> {userData.name}</p>!</h1>
     <h3 className='font-mono text-white text-[17px] mt-1'>You can personalize yourself here..</h3>
       <div>
           <div className="container my-5 text-white gap-2 font-mono">
