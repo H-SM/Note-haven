@@ -3,8 +3,21 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import contextValue from "../context/Notes/noteContext.js";
 import placeholder from '../assets/placeholder.png';
 import logo from "../assets/Logo.png";
+import Alert from "./Alert.js";
+import ReactMarkdown from 'react-markdown';
 
-const YourNote = () => {
+const YourNote = (props) => {
+  const [alert , setAlert ] = useState(null);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1200);
+  };
+
   const context = useContext(contextValue);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -119,8 +132,12 @@ const YourNote = () => {
         };
     }, []);
     return (
-        <button id="upload_widget" className="cloudinary-button">
+        <button id="upload_widget" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
+        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+        <span class="relative text-[14px]">
           Upload Image
+        </span>
         </button>
       );
     }; 
@@ -147,6 +164,44 @@ const YourNote = () => {
     // props.showAlert("Note updated successfully!", "success");
     navigate("/");
     }
+
+  const handlesave= (e) => {
+      // console.log("this will change the note to -> \n", note ,"\n in the next commits");
+      editnote(note._id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage);
+      console.log("note given to bg ->" , updatedNote);
+      setNote(updatedNote);
+      showAlert("Note saved successfully!", "success");
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.key === 's') {
+        event.preventDefault();
+        handlesave(event);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handlesave]);
+
+
+  const [markdownDescription, setMarkdownDescription] = useState('');
+
+  useEffect(() => {
+    setMarkdownDescription(updatedNote.edescription);
+  }, [updatedNote.edescription]);
+
+  const handleMarkdownChange = (e) => {
+    setUpdatedNote({
+      ...updatedNote,
+      edescription: e.target.value
+    });
+    setMarkdownDescription(e.target.value);
+  };
 
     if(!updatedNote){
       return <div>Loading...</div>
@@ -207,6 +262,9 @@ const YourNote = () => {
       </div>
 
       </div>
+      <div className='items-center w-full justify-center flex my-4'>
+      <CloudinaryUploadWidget/>
+      </div>
         </div>
         {/* <div className='text-white'>
             options for editing( if any)
@@ -243,13 +301,14 @@ const YourNote = () => {
     </nav>
     <div className='flex justify-center w-full'>
       <form className='text-white'>
+      <Alert alert={alert}/>
         <div className="my-3">
           {/* <label htmlFor="etitle" className="form-label">
             Title
           </label> */}
           <input
             type="text"
-            className="bg-transparent font-bold text-[38px]"
+            className="bg-transparent font-bold text-[38px] outline-none"
             id="etitle"
             name="etitle"
             value={updatedNote.etitle}
@@ -260,9 +319,18 @@ const YourNote = () => {
            <p className='text-white px-1'>#</p>
           <input type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
-        <div className="mb-3">
-            <label htmlFor="edesc" className="form-label">Description</label>
-            <input type="text" className="form-control" id="edescription" value={updatedNote.edescription}  name="edescription" onChange={onChange} placeholder="Your Description"/>
+      <div className="mb-3 h-[84vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar">
+            <textarea
+             type="text" 
+            className="bg-transparent text-[20px] outline-none w-full h-full no-scrollbar"
+            id="edescription" 
+            value={updatedNote.edescription}
+            name="edescription" 
+            onChange={handleMarkdownChange} 
+            placeholder="Your Description"/>
+            {/* <div className="markdown-preview mt-2 text-[20px]">
+            <ReactMarkdown>{updatedNote.edescription}</ReactMarkdown>
+            </div> */}
         </div>           
         <div className="my-3">
           <Link to="/" aria-current="page">
@@ -271,18 +339,17 @@ const YourNote = () => {
             </button>
           </Link>
             <button type="button" className="btn btn-primary" onClick={handleclick} disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} >Update Note</button>
-            <CloudinaryUploadWidget/>
       </div>
-            <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
+            {/* <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
               <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
-        {/* <button
+        <button
           type="button"
           className="btn btn-primary"
           onClick={handleUpdate}
         >
           Update Note
-        </button> */}
-        </div>
+        </button>
+        </div> */}
       </form>
       </div>
       </div>
