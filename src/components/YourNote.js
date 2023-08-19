@@ -299,7 +299,16 @@ const YourNote = (props) => {
         </div>
       </div>
     </nav>
-    <div className='flex justify-center w-full'>
+    <div className='flex justify-center w-full relative'>
+    <div className='absolute right-0 my-5 mx-5 z-5'>
+          <Link to="/" aria-current="page">
+            <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500'>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            </button>
+          </Link>
+    </div>
       <form className='text-white'>
       <Alert alert={alert}/>
         <div className="my-3">
@@ -319,7 +328,7 @@ const YourNote = (props) => {
            <p className='text-white px-1'>#</p>
           <input type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
-      <div className="mb-3 h-[84vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar">
+      <div className="mb-3 h-[83vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#e8c48dc8]/10 rounded-lg">
             <textarea
              type="text" 
             className="bg-transparent text-[20px] outline-none w-full h-full no-scrollbar"
@@ -333,12 +342,13 @@ const YourNote = (props) => {
             </div> */}
         </div>           
         <div className="my-3">
-          <Link to="/" aria-current="page">
-            <button type="button" className="btn btn-secondary">
-              Close
-            </button>
-          </Link>
-            <button type="button" className="btn btn-primary" onClick={handleclick} disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} >Update Note</button>
+        <button id="upload_widget" onClick={handleclick}  disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group my-2">
+        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
+        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+        <span class="relative text-[14px]">
+           Update Note
+        </span>
+        </button>
       </div>
             {/* <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
               <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
