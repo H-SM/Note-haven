@@ -188,6 +188,21 @@ const YourNote = (props) => {
     };
   }, [handlesave]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if ( event.key === 'Escape') {
+        event.preventDefault();
+        navigate("/");
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [navigate]);
+
 
   const [markdownDescription, setMarkdownDescription] = useState('');
 
@@ -331,7 +346,7 @@ const YourNote = (props) => {
       <div className="mb-3 h-[83vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#e8c48dc8]/10 rounded-lg">
             <textarea
              type="text" 
-            className="bg-transparent text-[20px] outline-none w-full h-full no-scrollbar"
+            className="bg-transparent text-[20px] outline-none w-full h-full no-scrollbar scroll-auto"
             id="edescription" 
             value={updatedNote.edescription}
             name="edescription" 
