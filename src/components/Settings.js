@@ -50,6 +50,20 @@ const Settings = () => {
       console.log("I changed up the userData dynamically as:",userData);
   };
   
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if ( event.key === 'Escape') {
+        event.preventDefault();
+        navigate("/");
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [navigate]);
    
   return (
     <>

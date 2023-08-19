@@ -64,12 +64,12 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
-        <div className='flex flex-row justify-center items-center'>
+        <div className='flex flex-row justify-center items-center' onClick={(e) => {e.preventDefault(); navigate("/settings");}}>
         <div className='flex flex-col justify-end items-end px-1 mx-2'>
-        <p className='text-white font-bold font-mono text-[20px]'>{userData.name}</p>
-        <p className='text-white/50 font-mono mt-[-0.375rem]'>{userData.email}</p>
-        </div>
-        <img alt="avatar" src={userData?.image || placeholder} className='w-[5rem] h-[5rem] rounded-full'/>
+        <p className='text-white font-bold font-mono text-[20px] hover:scale-110 transition ease-in-out cursor-default'>{userData.name}</p>
+        <p className='text-white/50 font-mono mt-[-0.375rem] hover:scale-105 transition ease-in-out cursor-default'>{userData.email}</p>
+        </div>  
+        <img alt="avatar" src={userData?.image || placeholder} className='w-[5rem] h-[5rem] rounded-full hover:scale-110 transition ease-in-out'/>
         </div>
       </div>
     </div>
