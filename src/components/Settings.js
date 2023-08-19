@@ -70,7 +70,8 @@ const Settings = () => {
   <div className='my-[50px] w-full'></div>
   <div className='flex flex-row justify-center items-start gap-11'>
     <div className=' mx-5 my-3'>
-    <h1 className='font-bold font-mono text-white text-[40px]'>Settings</h1>
+    <h1 className='semi-bold font-mono text-white text-[40px] flex gap-2'>Hello, <p className='font-bold'> {userData.name}</p>!</h1>
+    <h3 className='font-mono text-white text-[17px] mt-1'>You can personalize yourself here..</h3>
       <div>
           <div className="container my-5 text-white gap-2 font-mono">
           <NameUpdater handleUploadNameSuccess={handleUploadNameSuccess} />
@@ -91,10 +92,10 @@ const Settings = () => {
       <img alt="avatar" src={userData?.image || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
       </div>
         <div className='my-3 mx-[100px]'>
-        <CloudinaryUploadWidget onUploadSuccessName={handleUploadSuccess}/>
+        <CloudinaryUploadWidget handleUploadSuccess={handleUploadSuccess}/>
       </div>
     </div>
-    <div className='w-[380px] h-[400px] bg-[#e49012c8]/10 my-11 rounded-lg ring-2 ring-[#e49012c8] flex flex-col justify-center items-center gap-1'>
+    <div className='w-[380px] h-[400px] bg-[#e49012c8]/10 my-11 rounded-lg ring-2 ring-[#e49012c8] flex flex-col justify-center items-center gap-1 mt-[8vh]'>
     <img alt="avatar" src={userData?.image || placeholder} sizes="(max-width: 640px) 100vw, 640px" className='rounded-full w-[250px] h-[250px]'/>
     <p className='text-white font-mono font-bold text-[30px] mt-7'>{userData.name}</p>
     <p className='text-white/80 font-mono text-[15px]'>{userData.email}</p>

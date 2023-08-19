@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
-const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
+const CloudinaryUploadWidget = ( props ) => {
+  const { handleUploadSuccess } = props
   const cloudName = "defrwqxv6";
   const uploadPreset = "dfr2meo6";
 
@@ -45,7 +46,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
           alert(updatedUser.error);
         }
         else{
-          onUploadSuccess(url);
+          handleUploadSuccess(url);
           console.log("we gave the new url : ", url );
         }
         console.log('pfp updated successfully:', updatedUser);
@@ -65,7 +66,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
       uploadButton.removeEventListener("click", handleClick);
     }
   };
-}, [onUploadSuccess]);
+}, [handleUploadSuccess]);
 
   return (
     <button id="upload_widget" className=" relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
