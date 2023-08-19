@@ -155,9 +155,8 @@ const YourNote = () => {
     <div className='flex flex-row'>
     <nav
               id="sidenav-3"
-
-              className="left-0 top-0 h-screen w-[300px] lg:w-[400px] overflow-hidden bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)]">
-      <div className='flex flex-col justify-between h-full w-full'>
+            className="left-0 top-0 h-screen w-screen overflow-hidden max-w-[400px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)]">
+      <div className='flex flex-col justify-between w-full h-full'>
         <div>
         <img src={logo} alt="logo" />
         <p className='text-secondary-white text-semibold text-[15px] text-center font-mono px-1 py-2'>Your Ideas, Elevated.</p>
@@ -242,31 +241,29 @@ const YourNote = () => {
         </div>
       </div>
     </nav>
-    <div >
-      
-      <h3>Edit Your Note</h3>
+    <div className='flex justify-center w-full'>
       <form className='text-white'>
-        <div className="mb-3 ">
-          <label htmlFor="etitle" className="form-label">
+        <div className="my-3">
+          {/* <label htmlFor="etitle" className="form-label">
             Title
-          </label>
+          </label> */}
           <input
             type="text"
-            className="form-control"
+            className="bg-transparent font-bold text-[38px]"
             id="etitle"
             name="etitle"
             value={updatedNote.etitle}
             onChange={onChange}
           />
         </div>
+        <div className="mb-3 flex flex-grow items-center text-[15px] bg-[#e49012c8]/20 border-0 ring-1 ring-[#e49012c8]/40 w-fit leading-[27px] px-3 rounded-full ">
+           <p className='text-white px-1'>#</p>
+          <input type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
+        </div>
         <div className="mb-3">
             <label htmlFor="edesc" className="form-label">Description</label>
             <input type="text" className="form-control" id="edescription" value={updatedNote.edescription}  name="edescription" onChange={onChange} placeholder="Your Description"/>
-        </div>
-        <div className="mb-3">
-            <label className="form-label" htmlFor="etag">Tag</label>
-            <input type="text" className="form-control" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
-        </div>          
+        </div>           
         <div className="my-3">
           <Link to="/" aria-current="page">
             <button type="button" className="btn btn-secondary">
