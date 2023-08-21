@@ -2,10 +2,6 @@
 
 - apply changes to favicon & index.html
 - apply a redux - state looker rather than context api 
-- make a new segment to edit a note and reflect the changes 
-- give more properties to the edit_notes 
-- make a figma proto & make a css for the application 
-- look over the cluster connection in the back-end and make a global-accessable api 
 - look over deployment of the application 
 
 # Getting Started with Create React App
