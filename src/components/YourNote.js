@@ -5,6 +5,7 @@ import placeholder from '../assets/placeholder.png';
 import logo from "../assets/Logo.png";
 import Alert from "./Alert.js";
 import ReactMarkdown from 'react-markdown';
+import clsx from 'clsx';
 
 const YourNote = (props) => {
   const [alert , setAlert ] = useState(null);
@@ -204,6 +205,8 @@ const YourNote = (props) => {
   }, [navigate]);
 
 
+  const [opener, setOpener]=useState(true);
+
   const [markdownDescription, setMarkdownDescription] = useState('');
 
   useEffect(() => {
@@ -225,7 +228,8 @@ const YourNote = (props) => {
     <div className='flex flex-row'>
     <nav
               id="sidenav-3"
-            className="left-0 top-0 h-screen w-screen overflow-hidden max-w-[400px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)]">
+            className={clsx(`left-0 top-0 h-screen overflow-hidden max-w-[400px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] transition ease-in-out transition-300`,
+            opener ? "w-screen" : "w-0")}>
       <div className='flex flex-col justify-between w-full h-full'>
         <div>
         <img src={logo} alt="logo" />
@@ -315,14 +319,27 @@ const YourNote = (props) => {
       </div>
     </nav>
     <div className='flex justify-center w-full relative'>
-    <div className='absolute right-0 my-5 mx-5 z-5'>
+    <div className='absolute right-0 my-3 mx-3 z-5'>
           <Link to="/" aria-current="page">
             <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 p-1">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
             </button>
           </Link>
+    </div>
+    <div className='absolute left-0 my-3 mx-3 z-5'>
+            <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={() => {setOpener(!opener)}}>
+            {opener ?
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 p-1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+            </svg>
+            :
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+            </svg>
+            }
+            </button>
     </div>
       <form className='text-white'>
       <Alert alert={alert}/>
@@ -341,7 +358,7 @@ const YourNote = (props) => {
         </div>
         <div className="mb-3 flex flex-grow items-center text-[15px] bg-[#e49012c8]/20 border-0 ring-1 ring-[#e49012c8]/40 w-fit leading-[27px] px-3 rounded-full ">
            <p className='text-white px-1'>#</p>
-          <input type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
+          <input style={{width: "70px"}} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
       <div className="mb-3 h-[83vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#e8c48dc8]/10 rounded-lg">
             <textarea
@@ -355,8 +372,9 @@ const YourNote = (props) => {
             {/* <div className="markdown-preview mt-2 text-[20px]">
             <ReactMarkdown>{updatedNote.edescription}</ReactMarkdown>
             </div> */}
-        </div>           
-        <div className="my-3">
+            
+        </div>
+        <div className='flex gap-2 font-mono opacity-70 '>  
         <button id="upload_widget" onClick={handleclick}  disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group my-2">
         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
         <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
@@ -364,6 +382,14 @@ const YourNote = (props) => {
            Update Note
         </span>
         </button>
+        <div className='justify-end flex w-[58vh] gap-3 mt-[-3vh]'>  
+        <p><span className='font-bold'> {updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length}</span> words </p>
+        <p><span className='font-bold'> {updatedNote.edescription.trim().length }</span> characters</p>
+        <p><span className='font-bold'> {Math.trunc(0.008 * updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length)}</span> minutes</p>
+        </div>  
+        </div>     
+        <div className="my-3">
+        
       </div>
             {/* <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
               <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
