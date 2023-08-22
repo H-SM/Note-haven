@@ -1,9 +1,14 @@
 // import React, {useEffect} from 'react';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import contextValue from "../context/Notes/noteContext.js";
 import logo from '../assets/Logo.png';
 import { useLocation, useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
 
 const Sidenav = () => {
+  let context = useContext(contextValue);
+  let { notes } = context;
+
   let location = useLocation();
   let navigate = useNavigate();
   const handlelogout= () =>{
@@ -17,13 +22,34 @@ const Sidenav = () => {
     navigate("/");
   }
 
+
+  const formatTime = (isoTime) => {
+    const date = new Date(isoTime);
+    const options = {
+      day: '2-digit',
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    };
+
+    return date.toLocaleString('en-US', options);
+  }
+  const [recentOpener, setRecentOpener] = useState(true);
+
+  const handleclick= ( note) => {
+    console.log("Clicked note:", note);
+    navigate(`/note/${note._id}`, { note });
+  }
+
+
   return (
     <>
       <nav
               id="sidenav-3"
-              className="left-0 top-0 h-screen w-[300px] lg:w-[400px] overflow-hidden bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)]">
+              className="left-0 top-0 h-screen w-[300px] lg:w-[400px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] overflow-auto">
               {/* Side Navbar content */}
-              <div className='flex flex-col h-full'>
+              <div className='flex flex-col h-full justify-between  max-h-screen'>
               <div className='logo'>
               <img src={logo} alt="logo" className='pt-[30px]'/>
               <p className='text-secondary-white text-semibold text-[15px] text-right px-5 mt-[-15px] sm:mt-[-5px]'>- By HSM</p>
@@ -46,17 +72,58 @@ const Sidenav = () => {
               <p className='text-secondary-white text-[24px] px-3  font-mono'>Tags</p>
               </button>
 
-              <p className='text-white-100 mx-5'>tags here</p>
+              <div className={clsx(`overflow-auto flex-grow hidden`,
+              !recentOpener && "hidden")}>
+              <ul className="text-secondary-white list-outside">
+              {notes
+                  .slice()
+                  .sort((noteA, noteB) => {return new Date(noteB.updatedTime) - new Date(noteA.updatedTime);})
+                  .slice(0, 10)
+                 .map((note) => (
+                    <li className="text-white px-3 ring-1 my-2 flex justify-between bg-slate-400/10 hover:bg-slate-400/30 scale-95 hover:scale-100 rounded-md ring-[#e49012c8] py-1 hover:shadow-orange-400/30 hover:shadow-md transition ease-in-out duration-500">
+                      <p className='text-white text-[15px] font-mono max-w-[200px] fade-out-text'>{note.title}</p>
+                      <p className='opacity-50 '>{formatTime(note.updatedTime)}</p>
+                    </li>
+                  ))}
+                  {notes
+                  .slice()
+                  .sort((noteA, noteB) => {return new Date(noteB.updatedTime) - new Date(noteA.updatedTime);})
+                  .slice(0, 10)
+                 .map((note) => (
+                    <li className="text-white px-3 ring-1 my-2 flex justify-between bg-slate-400/10 hover:bg-slate-400/30 scale-95 hover:scale-100 rounded-md ring-[#e49012c8] py-1 hover:shadow-orange-400/30 hover:shadow-md transition ease-in-out duration-500">
+                      <p className='text-white text-[15px] font-mono max-w-[200px] fade-out-text'>{note.title}</p>
+                      <p className='opacity-50 '>{formatTime(note.updatedTime)}</p>
+                    </li>
+                  ))}
+                  
+              </ul>
+              </div>
 
-              <button className='flex flex-row gap-1 justify-start px-10 py-2 max-w-[340px] rounded-lg text-center items-center text-white-100 hover:bg-slate-400/20 active:bg-slate-400/30 transition ease-in-out delay-75'>
+              <button className='flex flex-row gap-1 justify-start px-10 py-2 max-w-[340px] rounded-lg text-center items-center text-white-100 hover:bg-slate-400/20 active:bg-slate-400/30 transition ease-in-out delay-75' onClick={() => {setRecentOpener(!recentOpener)}}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[25px] h-[25px]">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
               </svg>
 
               <p className='text-secondary-white text-[24px] px-3  font-mono'>Recent</p>
+              
               </button>
-
-              <p className='text-white-100 mx-5'>recent open here</p>
+              <div className={clsx(`overflow-auto flex-grow w-full`,
+              !recentOpener && "hidden")}>
+              <ul className="text-secondary-white list-outside">
+              {notes
+                  .slice()
+                  .sort((noteA, noteB) => {return new Date(noteB.updatedTime) - new Date(noteA.updatedTime);})
+                  .slice(0, 10)
+                 .map((note) => (
+                    <li className="text-white px-3 ring-1 my-2 flex justify-between bg-slate-400/10 hover:bg-slate-400/30 scale-95 hover:scale-100 rounded-md ring-[#e49012c8] py-1 hover:shadow-orange-400/30 hover:shadow-md transition ease-in-out duration-500 cursor-pointer mx-1" onClick={() => handleclick(note)}>
+                      <p className='text-white text-[15px] font-mono max-w-[200px] fade-out-text'>{note.title}</p>
+                      <p className='opacity-50 '>{formatTime(note.updatedTime)}</p>
+                    </li>
+                  ))}
+              </ul>
+              </div>
+              </div>
+              {/* <p className='text-white-100 mx-5'>recent open here</p> */}
 
               <div className='flex flex-col justify-end h-full w-full gap-2'>
               <button className='flex flex-row gap-1 justify-start px-10 py-2 max-w-[340px] rounded-lg text-center items-center text-white-100 hover:bg-slate-400/20 active:bg-slate-400/30 transition ease-in-out delay-75'>
@@ -86,7 +153,6 @@ const Sidenav = () => {
 
               <p className='text-secondary-white text-[24px] px-3  font-mono'>Log Out</p>
               </button>
-              </div>
               </div>
               </div>
             {/* {!(localStorage.getItem('token'))? <form className="d-flex">

@@ -168,7 +168,7 @@ const YourNote = (props) => {
 
   const handlesave= (e) => {
       // console.log("this will change the note to -> \n", note ,"\n in the next commits");
-      editnote(note._id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage);
+      editnote(note._id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage, Date.now);
       console.log("note given to bg ->" , updatedNote);
       setNote(updatedNote);
       showAlert("Note saved successfully!", "success");

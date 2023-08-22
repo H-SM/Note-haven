@@ -52,7 +52,7 @@ const NoteState = (props) =>{
     }
 
     //edit a note
-    const editnote = async (id, title, description, tag, image) =>{
+    const editnote = async (id, title, description, tag, image, date) =>{
       //API call
       await fetch(`${host}/api/notes/updatenote/${id}`, {
         method: "PUT",
@@ -72,6 +72,7 @@ const NoteState = (props) =>{
           newNotes[index].description = description;
           newNotes[index].tag = tag;
           newNotes[index].image = image;
+          newNotes[index].updatedTime = date;
           break;
         }
       setNotes(newNotes);
