@@ -27,6 +27,7 @@ input:-webkit-autofill:active{
 
 ::-webkit-scrollbar {
   width: 5px;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -39,11 +40,25 @@ input:-webkit-autofill:active{
   border-radius: 5px;
   transition: cubic-bezier(0.165, 0.84, 0.44, 1);
   transition-duration: 3000ms;
+  position: relative; /* Add this line */
+}
+
+/* Pseudo-element for hover */
+::-webkit-scrollbar-thumb::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+  cursor: pointer;
 }
 
 

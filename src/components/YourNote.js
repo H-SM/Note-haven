@@ -360,10 +360,10 @@ const YourNote = (props) => {
            <p className='text-white px-1'>#</p>
           <input style={{width: "70px"}} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
-      <div className="mb-3 h-[83vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#e8c48dc8]/10 rounded-lg">
+      <div className="mb-3 h-[83vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
             <textarea
              type="text" 
-            className="bg-transparent text-[20px] outline-none w-full h-full no-scrollbar scroll-auto"
+            className="bg-transparent text-[20px] outline-none w-full h-full  scroll-auto"
             id="edescription" 
             value={updatedNote.edescription}
             name="edescription" 
