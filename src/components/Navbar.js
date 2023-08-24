@@ -1,11 +1,15 @@
 // import React, {useEffect} from 'react';
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link , useLocation , useNavigate } from "react-router-dom";
 import placeholder from '../assets/placeholder.png';
+import contextValue from "../context/Notes/noteContext.js";
+
 const Navbar = () => {
   let location = useLocation();
   let navigate = useNavigate();
+  const { setSearchedNote } = useContext(contextValue);
+
   const handlelogout= () =>{
     localStorage.removeItem('token');
     navigate("/login");
@@ -60,7 +64,7 @@ const Navbar = () => {
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                     </div>
-                    <input id='search' name="search"  type="search" className='text-[#ffffff] pr-[1rem] pl-[2.75rem] pt-[0.375rem] pb-[0.375rem] bg-[#e49012c8]/20 border-0 rounded-md ring-1 ring-[#e49012c8] w-full block text-[14px] focus:outline-none focus:shadow-md focus:shadow-orange-400 transition ease-in-out duration-300' placeholder='Search'/>
+                    <input id='search' name="search"  type="search" className='text-[#ffffff] pr-[1rem] pl-[2.75rem] pt-[0.375rem] pb-[0.375rem] bg-[#e49012c8]/20 border-0 rounded-md ring-1 ring-[#e49012c8] w-full block text-[14px] focus:outline-none focus:shadow-md focus:shadow-orange-400 transition ease-in-out duration-300' placeholder='Search' onChange={(e) => setSearchedNote(e.target.value)}/>
                 </div>
             </div>
         </div>

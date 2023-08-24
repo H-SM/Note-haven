@@ -28,6 +28,8 @@ module.exports = {
       fontFamily: {
         'Arimo': ['Arimo', 'sans-serif'],
         "Oswald": ['Oswald', 'sans-serif'],
+        "Pacifico":["Pacifico", "cursive"],
+        "Sacramento":["Sacramento", "cursive"],
       },
 
       transitionTimingFunction: {

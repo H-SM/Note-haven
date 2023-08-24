@@ -41,7 +41,10 @@ const YourNote = (props) => {
       etag: "",
       eimage: "",
   });
-  const { editnote } = context; 
+  
+  const { editnote, setSearchedNote } = context; 
+  setSearchedNote("");
+
   useEffect(() => {
       const getnote = async (id) => {
           const host = "http://localhost:5000";
@@ -356,11 +359,11 @@ const YourNote = (props) => {
             onChange={onChange}
           />
         </div>
-        <div className="mb-3 flex flex-grow items-center text-[15px] bg-[#e49012c8]/20 border-0 ring-1 ring-[#e49012c8]/40 w-fit leading-[27px] px-3 rounded-full ">
+        <div className="mb-3 flex flex-grow items-center justify-center text-[15px] bg-[#e49012c8]/20 border-0 ring-1 ring-[#e49012c8]/40 w-fit leading-[27px] px-3 rounded-full ">
            <p className='text-white px-1'>#</p>
           <input style={{width: "70px"}} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
-      <div className="mb-3 h-[83vh] lg:w-[70vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
+      <div className="mb-3 h-[82vh] lg:w-[100vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
             <textarea
              type="text" 
             className="bg-transparent text-[20px] outline-none w-full h-full  scroll-auto"
@@ -372,7 +375,11 @@ const YourNote = (props) => {
             {/* <div className="markdown-preview mt-2 text-[20px]">
             <ReactMarkdown>{updatedNote.edescription}</ReactMarkdown>
             </div> */}
-            
+            <div className='justify-end flex gap-3 mt-[-2vh] mr-[1vh] opacity-50'>  
+        <p><span className='font-bold'> {updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length}</span> words </p>
+        <p><span className='font-bold'> {updatedNote.edescription.trim().length }</span> characters</p>
+        <p><span className='font-bold'> {Math.trunc(0.008 * updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length)}</span> minutes</p>
+        </div>
         </div>
         <div className='flex gap-2 font-mono opacity-70 '>  
         <button id="upload_widget" onClick={handleclick}  disabled={updatedNote.etitle.length<5 || updatedNote.edescription.length<5} className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group my-2">
@@ -381,12 +388,7 @@ const YourNote = (props) => {
         <span class="relative text-[14px]">
            Update Note
         </span>
-        </button>
-        <div className='justify-end flex w-[58vh] gap-3 mt-[-3vh]'>  
-        <p><span className='font-bold'> {updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length}</span> words </p>
-        <p><span className='font-bold'> {updatedNote.edescription.trim().length }</span> characters</p>
-        <p><span className='font-bold'> {Math.trunc(0.008 * updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length)}</span> minutes</p>
-        </div>  
+        </button>  
         </div>     
         <div className="my-3">
         

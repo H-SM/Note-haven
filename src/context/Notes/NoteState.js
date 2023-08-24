@@ -4,6 +4,7 @@ const NoteState = (props) =>{
     const host = "http://localhost:5000";
     const notesInitial = [];
     const[notes , setNotes ] = useState(notesInitial); 
+    const [searchedNote,setSearchedNote]=useState("");
 
     const getallnote = async () =>{
     
@@ -80,7 +81,7 @@ const NoteState = (props) =>{
   }
 
     return (
-    <NoteContext.Provider value={{notes,setNotes, addnote, deletenote, editnote,getallnote }}>
+    <NoteContext.Provider value={{notes,setNotes,searchedNote,setSearchedNote,  addnote, deletenote, editnote,getallnote }}>
         {props.children}
     </NoteContext.Provider>
     );
