@@ -9,6 +9,10 @@ const PasswordUpdater = () => {
     }
 
     const handlePasswordUpdate = async () => {
+      if (password.oldpassword.trim() === "" || password.newpassword.trim() === "") {
+        alert("Please fill in all the details required!");
+        return; 
+      }
         try {
             const host = "http://localhost:5000";
 
@@ -28,16 +32,28 @@ const PasswordUpdater = () => {
             }
 
             console.log('Password updated successfully:', updatedUser);
+            alert("Password updated successfully!")
           } catch (error) {
             console.error('Error updating name:', error);
           }
+    };
+
+    const submithandler =(e) => {
+      e.preventDefault();
+    }
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handlePasswordUpdate();
+      }
     };
   return (
     <>
     <div className='w-full mt-5'></div>
     <div>
       <h3 className='text-[24px] font-bold mx-1 my-2'>Update Password</h3>
-      <form >
+      <form onSubmit={submithandler}>
         <div className="mb-3">
           <label htmlFor="oldpassword" className="form-label text-[18px] font-normal text-white/50 ">Old Password</label>
           <input
@@ -47,6 +63,7 @@ const PasswordUpdater = () => {
             value={password.oldpassword}
             name="oldpassword"
             onChange={onChangePassword}
+            onKeyDown={onKeyDown}
             placeholder="Your Old Password"
           />
         </div>
@@ -59,6 +76,7 @@ const PasswordUpdater = () => {
             name="newpassword"
             value={password.newpassword}
             onChange={onChangePassword}
+            onKeyDown={onKeyDown}
             placeholder="Your New Password"
           />
         </div>

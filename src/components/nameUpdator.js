@@ -38,13 +38,23 @@ const NameUpdator = ({ handleUploadNameSuccess }) => {
     setNamer({...namer,[e.target.name] : e.target.value});
   }
 
+  const submithandler =(e) => {
+    e.preventDefault();
+  }
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleNameUpdate();
+    }
+  };
 
   return (
     <>
 
     <div className='text-white'>
       <h3 className='text-[24px] font-bold mx-1 my-2'>Update Name</h3>
-      <form>
+      <form onSubmit={submithandler}>
         <div className="mb-3">
           <label htmlFor="namer" className="form-label text-[18px] font-normal text-white/50 ">Name</label>
           <input
@@ -54,6 +64,7 @@ const NameUpdator = ({ handleUploadNameSuccess }) => {
             name="name"
             value={namer.name}
             onChange={onChangeName}
+            onKeyDown={onKeyDown}
             placeholder="Your New Name"
           />
         </div>
