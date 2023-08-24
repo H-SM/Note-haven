@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const PasswordUpdater = () => {
-    const [password, setPassword ]= useState({ oldpassword:"", newpassword:""});
+    const [password, setPassword ]= useState({ oldpassword:"", newpassword:"", checkpassword:""});
     const [showOldPassword, setShowOldPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
 
@@ -19,7 +19,11 @@ const PasswordUpdater = () => {
     }
 
     const handlePasswordUpdate = async () => {
-      if (password.oldpassword.trim() === "" || password.newpassword.trim() === "") {
+      if(password.newpassword !== password.checkpassword){
+        alert("Recheck your new password!");
+        return ;
+      }
+      if (password.oldpassword.trim() === "" || password.newpassword.trim() === ""|| password.checkpassword.trim() === "") {
         alert("Please fill in all the details required!");
         return; 
       }
@@ -128,6 +132,19 @@ const PasswordUpdater = () => {
               )}
             </button>
           </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="oldpassword" className="form-label text-[18px] font-normal text-white/50 ">Check New Password</label>
+          <input
+            type='password'
+            className="text-[#ffffff]  pr-[1rem] pl-[1rem] pt-[0.375rem] pb-[0.375rem] bg-[#e49012c8]/10 border-0 rounded-md ring-1 ring-[#e49012c8] w-[400px] block text-[14px] focus:outline-none focus:shadow-md focus:shadow-orange-400 transition ease-in-out duration-300"
+            id="checkpassword"
+            value={password.checkpassword}
+            name="checkpassword"
+            onChange={onChangePassword}
+            onKeyDown={onKeyDown}
+            placeholder="Check New Password"
+          />
         </div>
         <button
           type="button"
