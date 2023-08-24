@@ -45,7 +45,7 @@ function Login(props) {
     <div className="flex flex-col gap-11 justify-center items-center w-full h-full z-20">
     <img src={logo} alt="img" className="z-20 max-w-[400px]"/>
     <div className="z-20 mt-6 bg-black/40 w-[45vh] rounded-2xl ring-2 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 hover:[#e49012c8]/40">
-    <p className="text-white px-6 pt-11 text-[40px] font-Oswald font-bold">Welcome Back!</p>
+    <p className="text-white px-6 pt-11 text-[40px] font-bold">Welcome Back!</p>
   <span className="font-semibold text-[17px] px-8 text-secondary-white">Don't have an account? <a onClick={handleClick} className="hover:cursor-pointer text-[#f89a0fe6]/80 hover:text-[#f89a0fe6] inline-block relative hover:underline">
   create a new account
   <span class="absolute w-full h-0.5 bg-[#f89a0fe6] transform scale-x-0 bottom-0 left-0 origin-bottom-right transition-transform duration-250 ease-out group-hover:scale-x-100"></span>

@@ -7,11 +7,12 @@ import clsx from 'clsx';
 
 const Sidenav = () => {
   let context = useContext(contextValue);
-  let { notes } = context;
+  let { notes, setSearchedNote } = context;
   let location = useLocation();
   let navigate = useNavigate();
   const handlelogout= () =>{
     localStorage.removeItem('token');
+    setSearchedNote("");
     navigate("/login");
   }
   const handlesetting= () =>{

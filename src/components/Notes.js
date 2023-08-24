@@ -28,9 +28,7 @@ function Notes(props) {
       Your Notes
       </h1> */}
       <AddNote showAlert={showAlert}/>
-      {(notes.length===0) && <div className="container mx-2 bg-primary-black text-white">
-      "No notes to display"
-      </div>}
+      {(notes.length===0) && <p className='w-full flex justify-center items-center text-white font-Sacramento text-[50px] mt-[-15vh]'>Start your awesome journey by clicking the button above.</p>}
       {searchedNote==="" ? notes.map((note) => {
         // return <Noteitem note={note} key={note._id} updateNote={updateNote} showAlert={showAlert} />
         return <Noteitem note={note} key={note._id} showAlert={showAlert} />
