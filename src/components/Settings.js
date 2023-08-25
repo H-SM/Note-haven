@@ -33,13 +33,13 @@ const Settings = () => {
       console.log("I changed up the userData dynamically as:",userData)
     };
   
-  const handleUploadNameSuccess = (updatedName) => {
-      setUserData((prevUserData) => ({
-        ...prevUserData,
-        name: updatedName
-      }));
-      console.log("I changed up the userData dynamically as:",userData);
-  };
+  // const handleUploadNameSuccess = (updatedName) => {
+  //     setUserData((prevUserData) => ({
+  //       ...prevUserData,
+  //       name: updatedName
+  //     }));
+  //     console.log("I changed up the userData dynamically as:",userData);
+  // };
   
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -65,7 +65,8 @@ const Settings = () => {
     <h3 className='font-mono text-white text-[17px] mt-1'>You can personalize yourself here..</h3>
       <div>
           <div className="container my-5 text-white gap-2 font-mono">
-          <NameUpdater handleUploadNameSuccess={handleUploadNameSuccess} />
+          {/* <NameUpdater handleUploadNameSuccess={handleUploadNameSuccess} /> */}
+          <NameUpdater />
           <PasswordUpdater />
           </div>
         {/* <button type="button" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group" onClick={handleclick}>

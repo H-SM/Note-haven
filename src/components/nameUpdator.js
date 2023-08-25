@@ -1,21 +1,25 @@
 import React, { useState, useContext } from 'react';
 import contextValue from "../context/User/userContext.js";
 
-const NameUpdator = ({ handleUploadNameSuccess }) => {
+const NameUpdator = () => {
 
   const [namer, setNamer] = useState({ name: "" });
   const context = useContext(contextValue);
-  const { changename } = context;
+  const { changename, setUserData, userData} = context;
 
   const handleNameUpdate = async () => {
     try {
-      const updatedUser = await changename({ namer }); 
+      const updatedUser = await changename({name : namer.name}); 
       if (!updatedUser.success) {
         alert(updatedUser.error);
       } else {
-        handleUploadNameSuccess(namer.name);
-      }
+        setUserData((prevUserData) => ({
+                ...prevUserData,
+                name: namer.name
+              }));
+      console.log("I changed up the userData dynamically as:",userData);
       console.log('Name updated successfully:', updatedUser);
+      }
     } catch (error) {
       console.error('Error updating name:', error);
     }

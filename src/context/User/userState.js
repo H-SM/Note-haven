@@ -30,6 +30,7 @@ const UserState = (props) =>{
 
     const changename = async (namer) => {
       try{
+    console.log(JSON.stringify(namer));
     const response = await fetch(`${host}/api/auth/settings/name`, {
         method: "PUT",
         headers: {
