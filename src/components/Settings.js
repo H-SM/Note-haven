@@ -1,32 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import NameUpdater from './nameUpdator';
 import PasswordUpdater from './passwordUpdator';
 import placeholder from '../assets/placeholder.png';
 import CloudinaryUploadWidget from './cloudinaryUpload';
 import { useNavigate } from 'react-router-dom/dist';
+import contextValue from "../context/User/userContext.js";
+
 
 const Settings = () => {
   const closeRef = useRef(null);
   const navigate = useNavigate();
-  const [userData, setUserData] = useState({}); // Store user data here
-  const host = "http://localhost:5000";
+  const context = useContext(contextValue);
+  console.log("context:", context);
+
+  const { userData, setUserData, getuserinfo } = context;
+  console.log("userData:", userData);
 
   useEffect(() => {
-    // Fetch user data when the component mounts
-    fetch(`${host}/api/auth/getuser`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "auth-token" : localStorage.getItem("token")
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        setUserData(data); // Store the user data in the state
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
+    getuserinfo();
   }, []);
 
   const handleclick= (e) => {

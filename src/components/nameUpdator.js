@@ -1,44 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import contextValue from "../context/User/userContext.js";
 
 const NameUpdator = ({ handleUploadNameSuccess }) => {
 
-  const [namer, setNamer] = useState({name: ""});
+  const [namer, setNamer] = useState({ name: "" });
+  const context = useContext(contextValue);
+  const { changename } = context;
 
-  const handleNameUpdate =async () => {
+  const handleNameUpdate = async () => {
     try {
-      const host = "http://localhost:5000";
-
-      const response = await fetch(`${host}/api/auth/settings/name`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token" : localStorage.getItem("token")
-        },
-        body: JSON.stringify(namer)
-      });
-
-      const updatedUser = await response.json();
-      
-      if(!updatedUser.success){
+      const updatedUser = await changename({ namer }); 
+      if (!updatedUser.success) {
         alert(updatedUser.error);
-      }
-      else{
-      // useEffect(() => {
+      } else {
         handleUploadNameSuccess(namer.name);
-        console.log("we gave the new name : ", namer );
-      // }, [onUploadSuccess]);
       }
       console.log('Name updated successfully:', updatedUser);
     } catch (error) {
       console.error('Error updating name:', error);
     }
-  }
-  const onChangeName= (e) =>{
-    // e.preventDefault();
-    setNamer({...namer,[e.target.name] : e.target.value});
+  };
+
+  const onChangeName = (e) => {
+    setNamer({ ...namer, [e.target.name]: e.target.value });
   }
 
-  const submithandler =(e) => {
+  const submithandler = (e) => {
     e.preventDefault();
   }
 

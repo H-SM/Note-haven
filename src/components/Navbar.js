@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link , useLocation , useNavigate } from "react-router-dom";
 import placeholder from '../assets/placeholder.png';
 import contextValue from "../context/Notes/noteContext.js";
+import UserContextValue from "../context/User/userContext.js";
 
 const Navbar = () => {
   let location = useLocation();
@@ -20,25 +21,14 @@ const Navbar = () => {
   //   console.log(location.pathname);
   // }, [location]);
 
-  const [userData, setUserData] = useState({}); // Store user data here
-  const host = "http://localhost:5000";
+  const usercontext = useContext(UserContextValue);
+  console.log("context:", usercontext);
+
+  const { userData, setUserData, getuserinfo } = usercontext;
+  console.log("userData:", userData);
 
   useEffect(() => {
-    // Fetch user data when the component mounts
-    fetch(`${host}/api/auth/getuser`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "auth-token" : localStorage.getItem("token")
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        setUserData(data); // Store the user data in the state
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
+    getuserinfo();
   }, []);
 
   const handleclick= (e) => {

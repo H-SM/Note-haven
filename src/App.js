@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Settings from "./components/Settings";
 import Home from "./components/Home";
 import NoteState from "./context/Notes/NoteState";
+import UserState from "./context/User/userState";
 import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -28,6 +29,7 @@ function App() {
   return (
     <Router>
     <div className="bg-primary-black w-full h-[100vh] overflow-hidden">
+    <UserState>
     <NoteState>
     <div>
       <Routes>
@@ -57,6 +59,7 @@ function App() {
         </Routes>
               </div>
         </NoteState>
+        </UserState>
     </div>
     </Router>
   );
