@@ -1,27 +1,26 @@
-import React,{ useState} from 'react'
+import React,{ useContext, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/Logo.png';
+import contextValue from "../context/User/userContext.js";
 
 function Signup(props) {
   const [ credentails , setCredentails ] =useState({name: "", email: "", password: "", cpassword: ""});
   let navigate = useNavigate();
+
+  const context = useContext(contextValue);
+  const { signin } = context;
+
   const handleSubmit =async (e) => {
         e.preventDefault();
-        const host = "http://localhost:5000";
         if(credentails.password !== credentails.cpassword){
           alert("Recheck your new password!");
           return ;
         }
         const {name, email, password} = credentails;
+
         console.log(credentails);
-        const req = await fetch(`${host}/api/auth/createuser`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({name , email ,password })
-            });
-        const response = await req.json();
+
+        const response = await signin({name , email ,password });
         console.log(response);
         if(response.success){
             //save the auth_token and redirect
