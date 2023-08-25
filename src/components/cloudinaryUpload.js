@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import contextValue from "../context/User/userContext.js";
 
 const CloudinaryUploadWidget = ( props ) => {
   const { handleUploadSuccess } = props
   const cloudName = "defrwqxv6";
   const uploadPreset = "dfr2meo6";
+
+  const context = useContext(contextValue);
+  const { changeimage, setUserData, userData} = context;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,27 +33,17 @@ const CloudinaryUploadWidget = ( props ) => {
 
     const handlePfpUpdate =async (url) => {
       try {
-        const host = "http://localhost:5000";
-  
-        const response = await fetch(`${host}/api/auth/settings/pfp`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token" : localStorage.getItem("token")
-          },
-          body: JSON.stringify({"image" : url})
-        });
-  
-        const updatedUser = await response.json();
+        const updatedUser = await changeimage(url); 
         
         if(!updatedUser.success){
           alert(updatedUser.error);
         }
         else{
-          handleUploadSuccess(url);
-          console.log("we gave the new url : ", url );
+          setUserData((prevUserData) => ({
+            ...prevUserData,
+            image: url
+          }));
         }
-        console.log('pfp updated successfully:', updatedUser);
       } catch (error) {
         console.error('Error updating name:', error);
       }

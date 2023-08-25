@@ -25,13 +25,13 @@ const Settings = () => {
     navigate("/");
     }
 
-  const handleUploadSuccess = (updatedImage) => {
-      setUserData((prevUserData) => ({
-        ...prevUserData,
-        image: updatedImage
-      }));
-      console.log("I changed up the userData dynamically as:",userData)
-    };
+  // const handleUploadSuccess = (updatedImage) => {
+  //     setUserData((prevUserData) => ({
+  //       ...prevUserData,
+  //       image: updatedImage
+  //     }));
+  //     console.log("I changed up the userData dynamically as:",userData)
+  //   };
   
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -76,7 +76,7 @@ const Settings = () => {
       <img alt="avatar" src={userData?.image || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
       </div>
         <div className='my-3 mx-[100px]'>
-        <CloudinaryUploadWidget handleUploadSuccess={handleUploadSuccess}/>
+        <CloudinaryUploadWidget />
       </div>
     </div>
     <div className='w-[380px] h-[400px] bg-[#e49012c8]/10 my-11 rounded-lg ring-2 ring-[#e49012c8] flex flex-col justify-center items-center gap-1 mt-[8vh]'>

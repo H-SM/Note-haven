@@ -54,6 +54,23 @@ const UserState = (props) =>{
       console.error('Error fetching user data:', error);
     }
     }
+    
+    const changeimage = async (url) => {
+      try{
+      const response = await fetch(`${host}/api/auth/settings/pfp`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token" : localStorage.getItem("token")
+          },
+          body: JSON.stringify({"image" : url})
+        });
+        const updatedUser = await response.json();
+        return updatedUser;
+      }catch(error){
+        console.error('Error fetching user data:', error);
+      }
+      }
 
     const login = async ({email , password}) => {
         const response = await fetch(`${host}/api/auth/login`, {
@@ -79,7 +96,7 @@ const UserState = (props) =>{
         return response;
     }
     return (
-        <userContext.Provider value={{userData,setUserData,getuserinfo,changename, login, signin, changepassword }}>
+        <userContext.Provider value={{userData,setUserData,getuserinfo,changename, login, signin, changepassword, changeimage }}>
             {props.children}
         </userContext.Provider>
         );

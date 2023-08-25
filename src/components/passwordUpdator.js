@@ -7,7 +7,7 @@ const PasswordUpdater = () => {
     const [showNewPassword, setShowNewPassword] = useState(false);
 
     const context = useContext(contextValue);
-    const { changepassword, setUserData, userData} = context;
+    const { changepassword } = context;
 
     const toggleOldPasswordVisibility = () => {
       setShowOldPassword(!showOldPassword);
