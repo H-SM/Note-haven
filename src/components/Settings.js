@@ -33,14 +33,6 @@ const Settings = () => {
       console.log("I changed up the userData dynamically as:",userData)
     };
   
-  // const handleUploadNameSuccess = (updatedName) => {
-  //     setUserData((prevUserData) => ({
-  //       ...prevUserData,
-  //       name: updatedName
-  //     }));
-  //     console.log("I changed up the userData dynamically as:",userData);
-  // };
-  
   useEffect(() => {
     const handleKeyDown = (event) => {
       if ( event.key === 'Escape') {

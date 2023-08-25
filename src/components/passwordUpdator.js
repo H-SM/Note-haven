@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import contextValue from "../context/User/userContext.js";
 
 const PasswordUpdater = () => {
     const [password, setPassword ]= useState({ oldpassword:"", newpassword:"", checkpassword:""});
     const [showOldPassword, setShowOldPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
+
+    const context = useContext(contextValue);
+    const { changepassword, setUserData, userData} = context;
 
     const toggleOldPasswordVisibility = () => {
       setShowOldPassword(!showOldPassword);
@@ -19,27 +23,17 @@ const PasswordUpdater = () => {
     }
 
     const handlePasswordUpdate = async () => {
+      if (password.oldpassword.trim() == "" || password.newpassword.trim() == ""|| password.checkpassword.trim() == "") {
+        alert("Please fill in all the details required!");
+        return; 
+      }
+
       if(password.newpassword !== password.checkpassword){
         alert("Recheck your new password!");
         return ;
       }
-      if (password.oldpassword.trim() === "" || password.newpassword.trim() === ""|| password.checkpassword.trim() === "") {
-        alert("Please fill in all the details required!");
-        return; 
-      }
         try {
-            const host = "http://localhost:5000";
-
-            const response = await fetch(`${host}/api/auth/settings/pw`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-                "auth-token" : localStorage.getItem("token")
-              },
-              body: JSON.stringify(password)
-            });
-
-            const updatedUser = await response.json();
+          const updatedUser = await changepassword({oldpassword : password.oldpassword, newpassword : password.newpassword}); 
             
             if(!updatedUser.success){
                 alert(updatedUser.error);

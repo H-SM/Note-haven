@@ -19,18 +19,10 @@ const UserState = (props) =>{
       }catch(error){
         console.error('Error fetching user data:', error);
       }
-            // .then(response => response.json())
-            // .then(data => {
-            //   setUserData(data);
-            // })
-            // .catch(error => {
-            //   console.error('Error fetching user data:', error);
-            // });
     }
 
     const changename = async (namer) => {
       try{
-    console.log(JSON.stringify(namer));
     const response = await fetch(`${host}/api/auth/settings/name`, {
         method: "PUT",
         headers: {
@@ -38,6 +30,23 @@ const UserState = (props) =>{
           "auth-token" : localStorage.getItem("token")
         },
         body: JSON.stringify(namer)
+      });
+      const updatedUser = await response.json();
+      return updatedUser;
+    }catch(error){
+      console.error('Error fetching user data:', error);
+    }
+    }
+
+    const changepassword = async (password) => {
+    try{
+    const response = await fetch(`${host}/api/auth/settings/pw`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token" : localStorage.getItem("token")
+        },
+        body: JSON.stringify(password)
       });
       const updatedUser = await response.json();
       return updatedUser;
@@ -70,7 +79,7 @@ const UserState = (props) =>{
         return response;
     }
     return (
-        <userContext.Provider value={{userData,setUserData,getuserinfo,changename, login, signin }}>
+        <userContext.Provider value={{userData,setUserData,getuserinfo,changename, login, signin, changepassword }}>
             {props.children}
         </userContext.Provider>
         );
