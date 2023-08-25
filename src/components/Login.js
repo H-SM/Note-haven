@@ -1,20 +1,20 @@
-import React,{ useState} from "react";
+import React,{ useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/Logo.png';
+import contextValue from "../context/User/userContext.js";
+
 function Login(props) {
     const [ credentails , setCredentails ] =useState({email: "", password: ""});
     let navigate = useNavigate();
+
+    const context = useContext(contextValue);
+    const { login } = context;
+
     const handleSubmit =async (e) => {
+      // {email: credentails.email ,password : credentails.password}
         e.preventDefault();
-        const host = "http://localhost:5000";
-        const response = await fetch(`${host}/api/auth/login`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({email: credentails.email ,password : credentails.password}) 
-            });
-        const json = await response.json();
+        const json = await login({email: credentails.email , password : credentails.password});
+
         console.log(json);
         if(json.success){
             //save the auth_token and redirect
