@@ -100,13 +100,13 @@ const Sidenav = () => {
                   }
                 }}
                 >
-                <p className='text-white text-[17px] font-mono font-bold max-w-[200px] fade-out-text'>{(tag=='')?"General (no tags)":tag}</p>
+                <p className='text-white text-[17px] font-mono font-bold max-w-[320px] fade-out-text truncate'>{(tag=='')?"General (no tags)":tag}</p>
               </li>
               <ul>
               {openTags.includes(tag) && (
               getNotesByTag(notes, tag).map(note => (
-              <li key={note._id} className="text-white px-3 ring-1 my-2 flex justify-between bg-slate-400/10 hover:bg-slate-400/30 scale-90 hover:scale-95 rounded-md py-1 hover:shadow-orange-400/30 hover:shadow-md transition ease-in-out duration-500 cursor-pointer mx-1" onClick={() => handleclick(note)}>
-                <p className='text-white text-[15px] font-mono max-w-[200px] fade-out-text'>{note.title}</p>
+              <li key={note._id} className="text-white px-3 ring-1 my-2 flex justify-between bg-slate-400/10 hover:bg-slate-400/30 scale-90 hover:scale-95 rounded-md py-1 hover:shadow-orange-400/30 hover:shadow-md transition ease-in-out duration-500 cursor-pointer mx-1 " onClick={() => handleclick(note)}>
+                <p className='text-white text-[15px] font-mono max-w-[230px] fade-out-text truncate'>{note.title}</p>
                 <p className='opacity-50 '>{formatTime(note.date)}</p>
               </li>
             )))}
@@ -135,7 +135,7 @@ const Sidenav = () => {
                   .slice(0, 10)
                  .map((note) => (
                     <li className="text-white px-3 ring-1 my-2 flex justify-between bg-slate-400/10 hover:bg-slate-400/30 scale-95 hover:scale-100 rounded-md ring-[#e49012c8] py-1 hover:shadow-orange-400/30 hover:shadow-md transition ease-in-out duration-500 cursor-pointer mx-1" onClick={() => handleclick(note)}>
-                      <p className='text-white text-[15px] font-mono max-w-[200px] fade-out-text'>{note.title}</p>
+                      <p className='text-white text-[15px] font-mono max-w-[230px] fade-out-text truncate'>{note.title}</p>
                       <p className='opacity-50 '>{formatTime(note.updatedTime)}</p>
                     </li>
                   ))}

@@ -273,7 +273,7 @@ const YourNote = (props) => {
           alt="img"
           className="w-[90%] h-auto max-h-[250px] object-contain  mt-7 hover:scale-105 transition ease-in-out transition-200"
         />
-        <h5 className="text-bold font-Arimo text-[30px] leading-[28px] mb-3 mt-11">{updatedNote.etitle}</h5>
+        <h5 className="text-bold font-Arimo text-[27px] leading-[30px] mb-3 mt-11 my-3 max-w-[340px] fade-out-text truncate">{updatedNote.etitle}</h5>
         <p className="card-text">{formatTime(Date.now())}</p>
       </div>
 
@@ -395,7 +395,7 @@ const YourNote = (props) => {
         </div>
         <div className="mb-3 flex flex-grow items-center justify-center text-[15px] bg-[#e49012c8]/20 border-0 ring-1 ring-[#e49012c8]/40 w-fit leading-[27px] px-3 rounded-full ">
            <p className='text-white px-1'>#</p>
-          <input style={{width: "70px"}} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
+          <input style={{width: `calc(1ch * ${updatedNote.etag.length})`, minWidth: '60px' , maxWidth: '85vh' }} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
       <div className="mb-3 h-[82vh] lg:w-[100vh] md:w-[40vh] px-3 py-3 overflow-y-none no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
             <textarea

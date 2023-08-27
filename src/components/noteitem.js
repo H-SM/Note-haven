@@ -31,7 +31,7 @@ const formatTime = (isoTime) => {
 // #f4d799
   return (
     <div className="my-3 mx-2 relative">
-    <div className="bg-[#f4d799]/80 w-[375px] h-[379px] relative transition ease-in-out transition-200">
+    <div className="bg-[#f4d799]/90 w-[375px] h-[379px] relative transition ease-in-out transition-200">
     <div className="absolute top-3 left-1 py-2 px-2 w-[4rem] h-[4rem] hover:cursor-pointer hover:scale-110 z-20 transition ease-in-out transition-200 text-gray-800">
       <svg 
         onClick={() => setModal(true)}
@@ -94,7 +94,7 @@ const formatTime = (isoTime) => {
           alt="img"
           className="w-[70%] h-auto max-h-[250px] object-contain  mt-7 hover:scale-105 transition ease-in-out transition-200"
         />
-        <h5 className="text-bold font-Arimo text-[27px] leading-[28px] my-3">{note.title}</h5>
+        <h5 className="text-bold font-Arimo text-[27px] leading-[30px] my-3 max-w-[340px] fade-out-text truncate">{note.title}</h5>
         <p className="card-text ">{formatTime(note.date)}</p>
       </div>
     </div>
