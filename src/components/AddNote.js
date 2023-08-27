@@ -14,6 +14,7 @@ function AddNote(props) {
         props.showAlert("Note added successfully!", "success");
         closeRef.current.click();
     }
+    const [modal, setModal]=useState(false);
 
     const CloudinaryUploadWidget = () => {
       const cloudName = "defrwqxv6";
@@ -71,34 +72,56 @@ function AddNote(props) {
     const onChange= (e) =>{ 
         setNote({...note,[e.target.name] : e.target.value});
     }
+
+    useEffect(() => {
+      const handleKeyDown = (event) => {
+        if ( event.key === 'Escape') {
+          event.preventDefault();
+          setModal(false);
+        }
+      };
+  
+      document.addEventListener('keydown', handleKeyDown);
+  
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [setModal]);
+
   return (
     <>
 
-    <div ref={ref} type="button" className="border-2 border-slate-400  justify-center items-center text-bold font-mono text-[16px] text-secondary-white w-[375px] h-[379px] border-dashed my-3 mx-2 hover:bg-secondary-white/10 rounded-lg" data-bs-toggle="modal" data-bs-target="#editModal">
+<button
+        ref={ref}
+        type="button"
+        className="border-2 border-slate-400 justify-center items-center text-bold font-mono text-[16px] text-secondary-white w-[375px] h-[379px] border-dashed my-3 mx-2 hover:bg-secondary-white/10 rounded-lg"
+        onClick={() => setModal(true)}
+      >
     <div className='hover:scale-110 flex flex-col justify-center items-center h-full transition ease-linear transition-150'>
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-11 h-11">
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
     <p>Add a Note</p>
     </div>
-</div>
-  <div className="modal fade" id="editModal" tabIndex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div className="modal-dialog">
-      <div className="modal-content bg-dark ring-1 ring-[#e49012c8]/60">
-    <div>
-      <div className="container my-3">
+</button>
+
+
+    <div className={`${!modal && "hidden"} absolute w-full h-full top-0 left-0 z-50 bg-gray-800/60`}>
+    <div className="absolute right-[40%] top-3 rounded-lg">
+    <div className=" bg-dark ring-1 ring-[#e49012c8]/60 rounded-lg px-4 py-2 w-[450px]">
+    <div className="container my-3">
     <div className="d-flex justify-content-between align-items-center text-white">
-      <h5 className="modal-title text-white items-center text-[20px] font-Arimo">Add your Note</h5>
+      <h5 className=" text-white items-center text-[20px] font-Arimo">Add your Note</h5>
       
 
-      <button type="button text-black" data-bs-dismiss="modal" aria-label="Close" ref={closeRef}>
+      <button type="button" className="text-white hover:scale-110 transition ease-linear transition-200" ref={closeRef} onClick={() => setModal(false)}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
       </button>
     </div>
   </div>
-  <div className="modal-body">
+  <div className="z-50">
       <form className='font-mono'>
         <div className="mb-3">
           <label htmlFor="title" className="form-label text-white text-[15px] flex flex-row gap-2  font-mono">Title <p className='text-white/40 text-ellipsis'>(min. 5 characters)</p></label>
@@ -117,9 +140,9 @@ function AddNote(props) {
         <p className='text-[#ff9902f5] text-[15px]'>Your Image</p>
         <img src={note.image} alt='img' className='w-[200px] h-[200px] object-cover rounded-full '/>
         </div>}
-        <div className=' mt-3 px-3'>
-        <div className='flex flex-row justify-between mx-5'>
-        <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group" onClick={handleclick}>
+        <div className='mt-3'>
+        <div className='flex flex-row justify-between w-full'>
+        <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group disabled:opacity-60 " onClick={handleclick}>
         <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
         <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
         <span className="relative text-[14px]">
@@ -132,7 +155,6 @@ function AddNote(props) {
         
       </form>
       </div>
-    </div>
     </div>
     </div>
     </div>
