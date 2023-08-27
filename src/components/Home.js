@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import Notes from './NOtes'
+import Notes from './Notes';
 import UserContextValue from "../context/User/userContext.js";
 import Background from './background';
 
