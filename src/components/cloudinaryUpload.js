@@ -12,7 +12,6 @@ const CloudinaryUploadWidget = ( props ) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-    // Token is not available, handle accordingly
     return;
     }
     const myWidget = window.cloudinary.createUploadWidget(

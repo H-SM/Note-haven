@@ -11,7 +11,6 @@ function NotesItem(props) {
   const [modal , setModal ] = useState(false);
   
   const handleclick= (e) => {
-    console.log("Clicked note:", note);
     navigate(`/note/${note._id}`, { note });
 }
 

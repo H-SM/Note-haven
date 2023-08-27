@@ -39,7 +39,6 @@ const PasswordUpdater = () => {
                 alert(updatedUser.error);
             }
             else{
-            console.log('Password updated successfully:', updatedUser);
             alert("Password updated successfully!")
             }
           } catch (error) {

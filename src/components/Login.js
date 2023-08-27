@@ -11,14 +11,11 @@ function Login(props) {
     const { login } = context;
 
     const handleSubmit =async (e) => {
-      // {email: credentails.email ,password : credentails.password}
         e.preventDefault();
         const json = await login({email: credentails.email , password : credentails.password});
 
-        console.log(json);
         if(json.success){
-            //save the auth_token and redirect
-            localStorage.setItem('token', json.auth_token);//we are saving the token in the local storage to fetch the correct data for that user
+            localStorage.setItem('token', json.auth_token);
             props.showAlert("Logged in successfully!", "success");
             navigate("/");
         }else{
@@ -68,7 +65,6 @@ function Login(props) {
   <span class="absolute w-full h-0.5 bg-[#f89a0fe6] transform scale-x-0 bottom-0 left-0 origin-bottom-right transition-transform duration-250 ease-out group-hover:scale-x-100"></span>
   </a></span>
     <form onSubmit={handleSubmit} className="z-20 relative p-6 pt-3">
-      {/* 202021 */}
   
         <div className="mb-3 text-secondary-white/80 hover:text-secondary-white">
           <label htmlFor="email" className="form-label font-mono text-[18px] ">

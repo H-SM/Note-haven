@@ -15,17 +15,10 @@ const Navbar = () => {
     localStorage.removeItem('token');
     navigate("/login");
   }
-  // useEffect(() => {
-  //   // Google Analytics
-  //   // ga('send', 'pageview');
-  //   console.log(location.pathname);
-  // }, [location]);
 
   const usercontext = useContext(UserContextValue);
-  console.log("context:", usercontext);
 
   const { userData, setUserData, getuserinfo } = usercontext;
-  console.log("userData:", userData);
 
   useEffect(() => {
     getuserinfo();
@@ -40,11 +33,6 @@ const Navbar = () => {
 <nav className='bg-zinc-800/40 w-full'>
     <div className='pl-[0.5rem] pr-[0.5rem] max-w-[80rem] ml-auto mr-auto '>
       <div className='justify-between items-center h-[6rem] flex relative'>
-        {/* <div className='flex items-center pl-[0.5rem] pr-[0.5rem]'>
-            <div className='shrink-0'>
-             <p className='text-white'>HI</p>
-            </div>
-        </div> */}
         <div className='pl-[0.5rem] pr-[0.5rem] justify-start flex flex-grow flex-shrink flex-0'>
             <div className='max-w-[45rem] w-full '>
                 <label for="search" className='absolute w-1 h-1 p-0 m-n1 overflow-hidden whitespace-nowrap border-0'>Search</label>

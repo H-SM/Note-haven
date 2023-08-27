@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
 
 
-const JWT_SECRET = "HSM_HERE_:))";//this will be the signature over the token of JWT to authneticate our user and ensure the user doesnt changes aspects of the json while using the application
+const JWT_SECRET = "HSM_HERE_:))";
 
 //ROUTE 1: create a user using : POST "/api/auth/createuser". doesnt require Auth ( authenitication ), No login required 
 router.post('/createuser',[
@@ -21,7 +21,7 @@ router.post('/createuser',[
         return res.status(400).json({success, errors : errors.array()});
     }
     try{
-    const salt =await bcrypt.genSalt(10);//make up the salt
+    const salt =await bcrypt.genSalt(10);
     const secPass =await bcrypt.hash(req.body.password, salt);
 
     const user =await User.create({
@@ -35,7 +35,6 @@ router.post('/createuser',[
         }
     }
     const jwt_token = jwt.sign(data, JWT_SECRET);
-    // res.json(user);
     success = true;
     res.json({success, jwt_token});
 
@@ -46,7 +45,6 @@ router.post('/createuser',[
         }
         console.error(err);
         res.status(500).json({success, error : "server error", message : err.message});
-        // we will send this error to logger or SQS not just showing it over the console
     }
 });
 
@@ -107,7 +105,6 @@ router.put('/settings/name',[
     try {
         const userId = req.user.id;
         let success = false;
-        // $2a$10$DmF/OrDc8ZaAmzStnTUqH.wUzWan65RUAyQ4l.qh4PtpIvZs/S7PK
         const { name } = req.body;
         const user = await User.findById(userId);
 
@@ -134,7 +131,6 @@ router.put('/settings/pfp',[
     try {
         const userId = req.user.id;
         let success = false;
-        // $2a$10$DmF/OrDc8ZaAmzStnTUqH.wUzWan65RUAyQ4l.qh4PtpIvZs/S7PK
         const { image } = req.body;
         const user = await User.findById(userId);
 
@@ -153,10 +149,6 @@ router.put('/settings/pfp',[
 }
 });
 
-
-// "name":"h-sm",
-// "oldpassword":"qweewq",
-//   "newpassword":"qweewq"
 //ROUTE 5: Update user info. verification required [ for password ]
 router.put('/settings/pw',[
     fetchuser,
@@ -166,8 +158,6 @@ router.put('/settings/pw',[
     try {
             const userId = req.user.id;
             let success = false;
-            // $2a$10$DmF/OrDc8ZaAmzStnTUqH.wUzWan65RUAyQ4l.qh4PtpIvZs/S7PK
-            // const { name, oldpassword, newpassword , userId } = req.body;
             const { oldpassword, newpassword } = req.body;
             const user = await User.findById(userId);
     
@@ -181,7 +171,7 @@ router.put('/settings/pw',[
         if(!passwordCompare){
             return res.status(400).json({success, error :"Incorrect Password Entered"});
         }
-        const salt =await bcrypt.genSalt(10);//make up the salt
+        const salt =await bcrypt.genSalt(10);
         const secPass =await bcrypt.hash(newpassword, salt);
 
         const updInfo = {};

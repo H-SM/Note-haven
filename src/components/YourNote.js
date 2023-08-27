@@ -4,7 +4,7 @@ import contextValue from "../context/Notes/noteContext.js";
 import placeholder from '../assets/flower.png';
 import logo from "../assets/Logo.png";
 import Alert from "./Alert.js";
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import clsx from 'clsx';
 
 const YourNote = (props) => {
@@ -58,7 +58,6 @@ const YourNote = (props) => {
               }
           });
           const response = await req.json();
-          // console.log(response.note);
 
           if (response.success === 'NOTE given' && response.note) {
               setNote(response.note);
@@ -84,12 +83,7 @@ const YourNote = (props) => {
       };
 
       fetchNote();
-  }, [id]);
-
-  // useEffect(() => {
-    // console.log("hi" , note);
-  // }, [updatedNote]);
-  
+  }, [id]); 
 
   const onChange= (e) =>{
     setUpdatedNote({...updatedNote,[e.target.name] : e.target.value});
@@ -102,7 +96,6 @@ const YourNote = (props) => {
         useEffect(() => {
           const token = localStorage.getItem("token");
           if (!token) {
-          // Token is not available, handle accordingly
           return;
           }
           const myWidget = window.cloudinary.createUploadWidget(
@@ -162,19 +155,13 @@ const YourNote = (props) => {
     return date.toLocaleString('en-US', options);
   };
   const handleclick= (e) => {
-    // console.log("this will change the note to -> \n", note ,"\n in the next commits");
     editnote(note._id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage);
-    console.log("note given to bg ->" , updatedNote);
     setNote(updatedNote);
-    // ref.current.click();
-    // props.showAlert("Note updated successfully!", "success");
     navigate("/");
     }
 
   const handlesave= (e) => {
-      // console.log("this will change the note to -> \n", note ,"\n in the next commits");
       editnote(note._id, updatedNote.etitle, updatedNote.edescription, updatedNote.etag, updatedNote.eimage, Date.now);
-      console.log("note given to bg ->" , updatedNote);
       setNote(updatedNote);
       showAlert("Note saved successfully!", "success");
   }
@@ -282,9 +269,6 @@ const YourNote = (props) => {
       <CloudinaryUploadWidget/>
       </div>
         </div>
-        {/* <div className='text-white'>
-            options for editing( if any)
-        </div> */}
          <div className='flex flex-col gap-2 w-full'>
          <button className='flex flex-row gap-1 justify-start px-10 py-2 mx-2 rounded-lg text-center items-center text-white-100 hover:bg-slate-400/20 active:bg-slate-400/30 transition ease-in-out delay-75' onClick={handlehome}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[25px] h-[25px]">
@@ -319,7 +303,6 @@ const YourNote = (props) => {
     <div className='absolute right-0 my-3 mx-3 z-5'>
           
             <button type="button" className='text-white hover:scale-125 rounded-full bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={() => setModal(true)}>
-            {/* <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500' data-modal-target="popup-modal" data-modal-show="popup-modal"> */}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-11 p-1">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -427,16 +410,6 @@ const YourNote = (props) => {
         <div className="my-3">
         
       </div>
-            {/* <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">
-              <img alt="avatar" src={updatedNote?.eimage || placeholder} sizes="(max-width: 640px) 100vw, 640px"/>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleUpdate}
-        >
-          Update Note
-        </button>
-        </div> */}
       </form>
       </div>
       </div>

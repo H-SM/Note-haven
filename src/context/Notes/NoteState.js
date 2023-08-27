@@ -16,7 +16,7 @@ const NoteState = (props) =>{
                 }
               });
               const json = await response.json();
-              console.log("API Response:", json);
+
               setNotes(json);
     }
 

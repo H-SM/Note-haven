@@ -11,10 +11,8 @@ const Settings = () => {
   const closeRef = useRef(null);
   const navigate = useNavigate();
   const context = useContext(contextValue);
-  console.log("context:", context);
 
   const { userData, setUserData, getuserinfo } = context;
-  console.log("userData:", userData);
 
   useEffect(() => {
     getuserinfo();
@@ -25,14 +23,6 @@ const Settings = () => {
     navigate("/");
     }
 
-  // const handleUploadSuccess = (updatedImage) => {
-  //     setUserData((prevUserData) => ({
-  //       ...prevUserData,
-  //       image: updatedImage
-  //     }));
-  //     console.log("I changed up the userData dynamically as:",userData)
-  //   };
-  
   useEffect(() => {
     const handleKeyDown = (event) => {
       if ( event.key === 'Escape') {
@@ -57,19 +47,10 @@ const Settings = () => {
     <h3 className='font-mono text-white text-[17px] mt-1'>You can personalize yourself here..</h3>
 
           <div className="container my-5 text-white gap-2 font-mono">
-          {/* <NameUpdater handleUploadNameSuccess={handleUploadNameSuccess} /> */}
           <NameUpdater />
           <PasswordUpdater />
           </div>
-        {/* <button type="button" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group" onClick={handleclick}>
-        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
-        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-        <span class="relative text-[14px]">
-          Close
-        </span>
-        </button> */}
-
-      
+  
       <h3 className='text-[24px] text-white font-bold mx-3 my-2'>Profile Picture</h3>
       
       <div className="relative inline-block rounded-full overflow-hidden h-[300px] w-[300px]">

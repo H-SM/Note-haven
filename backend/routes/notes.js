@@ -54,17 +54,15 @@ router.put('/updatenote/:id', fetchuser,
     try {
     const updatedTime = Date.now();
     const {title , description, tag, image } = req.body;
-    // const updatedTime = Date.now();
-    //create a new Note object 
     const newNote = {};
     if(title){newNote.title = title;}
     if(description){newNote.description = description;}
     if(tag){newNote.tag = tag;}
     if(updatedTime){newNote.updatedTime = updatedTime;}
     if(image){newNote.image = image;}
-    // newNote.updatedTime = updatedTime;
+
     console.log(newNote);
-    //find the note to be updated 
+
     let note =await Note.findById(req.params.id);
     if(!note) res.status(404).send("NOT FOUND!");
 
@@ -124,30 +122,4 @@ router.get('/getnote/:id', fetchuser,
   }
 );
 
-// //ROUTE 3: change image of the note
-// router.put('/note/img/:id',[
-//   fetchuser,
-//   body('image'),
-// ],async (req,res)=>{
-//   try {
-//       let success = false;
-
-//       const { image } = req.body;
-//       let note =await Note.findById(req.params.id);
-//       if(!note) res.status(404).json({ success , message : "USER NOT FOUND!"});
-
-//       if(note.user.toString() !== req.user.id){
-//         return res.status(401).send("NOT ALLOWED");
-//       }
-
-//       const note_upd = {};
-//       note_upd.image = image;
-//       success = true;
-//       const new_note = await Note.findByIdAndUpdate(req.params.id, {$set : note_upd},{new : true});
-//       res.json({ success, new_note });
-// }catch(err){
-//   console.error(err);
-//   res.status(500).send("INTERNAL SERVER ERROR : Some error occured");
-// }
-// });
 module.exports = router;

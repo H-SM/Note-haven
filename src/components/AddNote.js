@@ -1,6 +1,5 @@
 import React,{ useContext , useEffect, useRef, useState } from 'react'
 import contextValue from "../context/Notes/noteContext.js";
-import placeholder from '../assets/placeholder.png';
 
 function AddNote(props) {
     const context = useContext(contextValue);
@@ -96,7 +95,6 @@ function AddNote(props) {
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
-        {/* <span aria-hidden="true">&times;</span> */}
       </button>
     </div>
   </div>

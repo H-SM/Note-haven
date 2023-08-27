@@ -17,8 +17,6 @@ const NameUpdator = () => {
                 ...prevUserData,
                 name: namer.name
               }));
-      console.log("I changed up the userData dynamically as:",userData);
-      console.log('Name updated successfully:', updatedUser);
       }
     } catch (error) {
       console.error('Error updating name:', error);

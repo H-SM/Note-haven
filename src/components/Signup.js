@@ -18,10 +18,7 @@ function Signup(props) {
         }
         const {name, email, password} = credentails;
 
-        console.log(credentails);
-
         const response = await signin({name , email ,password });
-        console.log(response);
         if(response.success){
             //save the auth_token and redirect
             localStorage.removeItem('token');

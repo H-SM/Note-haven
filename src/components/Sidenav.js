@@ -57,7 +57,6 @@ const Sidenav = () => {
   const [openTags, setOpenTags] = useState([]);
 
   const handleclick= ( note) => {
-    console.log("Clicked note:", note);
     navigate(`/note/${note._id}`, { note });
   }
 
@@ -182,11 +181,6 @@ const Sidenav = () => {
               </button>
               </div>
               </div>
-            {/* {!(localStorage.getItem('token'))? <form className="d-flex">
-            <Link className="btn btn-primary mx-1" to="/login" role="button">Log-in</Link>
-            <Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>
-          </form> : <button className="btn btn-primary" onClick={handlelogout}>Logout</button>
-          } */}
       </nav>
     </>
   )
