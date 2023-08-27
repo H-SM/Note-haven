@@ -28,10 +28,10 @@ const formatTime = (isoTime) => {
 
   return date.toLocaleString('en-US', options);
 };
-
+// #f4d799
   return (
     <div className="my-3 mx-2 relative">
-    <div className="bg-[#f4d799] w-[375px] h-[379px] relative transition ease-in-out transition-200">
+    <div className="bg-[#f4d799]/80 w-[375px] h-[379px] relative transition ease-in-out transition-200">
     <div className="absolute top-3 left-1 py-2 px-2 w-[4rem] h-[4rem] hover:cursor-pointer hover:scale-110 z-20 transition ease-in-out transition-200 text-gray-800">
       <svg 
         onClick={() => setModal(true)}
