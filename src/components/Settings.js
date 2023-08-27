@@ -15,7 +15,7 @@ const Settings = () => {
 
   useEffect(() => {
     getuserinfo();
-  }, [getuserinfo]);
+  },[]);
 
   const handleclick= (e) => {
     setUserData({});

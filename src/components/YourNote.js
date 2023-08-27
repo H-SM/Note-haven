@@ -49,7 +49,7 @@ const YourNote = (props) => {
 
   useEffect(() => {
       const getnote = async (id) => {
-          const host = "http://localhost:5000";
+          const host = process.env.REACT_APP_BACKEND_HOST;
           const req = await fetch(`${host}/api/notes/getnote/${id}`, {
               method: "GET",
               headers: {

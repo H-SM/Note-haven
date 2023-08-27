@@ -1,6 +1,6 @@
 // import React, {useEffect} from 'react';
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import placeholder from '../assets/placeholder.png';
 import contextValue from "../context/Notes/noteContext.js";
@@ -12,11 +12,7 @@ const Navbar = () => {
 
   const usercontext = useContext(UserContextValue);
 
-  const { userData, getuserinfo } = usercontext;
-
-  useEffect(() => {
-    getuserinfo();
-  }, [getuserinfo]);
+  const { userData } = usercontext;
 
   return (
 <>
