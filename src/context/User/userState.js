@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import userContext from "./userContext";
 
 const UserState = (props) =>{
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_BACKEND_HOST;
+    console.log(process.env.REACT_APP_BACKEND_HOST);
     const userInitial = [];
     const [userData, setUserData] = useState(userInitial);
 
