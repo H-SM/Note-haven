@@ -63,8 +63,8 @@ const Settings = () => {
     <div className='w-[380px] h-[400px] bg-[#e49012c8]/10 my-11 rounded-lg ring-2 ring-[#e49012c8] flex flex-col justify-center items-center gap-1 mt-[8vh] relative'>
     <div className='absolute right-[-6vh] top-[-7vh] my-3 mx-3 z-5'>
             <button type="button" className='text-white hover:scale-125 rounded-full bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={handleclick}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" className="w-12 h-12 p-2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-12 h-12 p-2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
             </button>
   </div>
