@@ -7,7 +7,7 @@ const CloudinaryUploadWidget = ( props ) => {
   const uploadPreset = "dfr2meo6";
 
   const context = useContext(contextValue);
-  const { changeimage, setUserData, userData} = context;
+  const { changeimage, setUserData } = context;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -59,7 +59,7 @@ const CloudinaryUploadWidget = ( props ) => {
       uploadButton.removeEventListener("click", handleClick);
     }
   };
-}, [handleUploadSuccess]);
+}, [handleUploadSuccess, changeimage, setUserData]);
 
   return (
     <button id="upload_widget" className=" relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">

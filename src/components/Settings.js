@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import NameUpdater from './nameUpdator';
 import PasswordUpdater from './passwordUpdator';
 import placeholder from '../assets/placeholder.png';
@@ -8,7 +8,6 @@ import contextValue from "../context/User/userContext.js";
 
 
 const Settings = () => {
-  const closeRef = useRef(null);
   const navigate = useNavigate();
   const context = useContext(contextValue);
 
@@ -16,12 +15,12 @@ const Settings = () => {
 
   useEffect(() => {
     getuserinfo();
-  }, []);
+  }, [getuserinfo]);
 
   const handleclick= (e) => {
     setUserData({});
     navigate("/");
-    }
+  }
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -40,7 +39,7 @@ const Settings = () => {
    
   return (
     <>
-  <div className='my-[50px] w-full'></div>
+  <div className='my-[50px] w-full relative'></div>
   <div className='flex flex-row justify-center items-start gap-11'>
     <div className='overflow-y-auto h-screen scroll-auto  mx-5 my-3'>
     <h1 className='semi-bold font-mono text-white text-[40px] flex gap-2'>Hello, <p className='font-bold'> {userData.name}</p>!</h1>
@@ -61,7 +60,14 @@ const Settings = () => {
       </div>
       <div className='w-full h-[150px]'></div>
     </div>
-    <div className='w-[380px] h-[400px] bg-[#e49012c8]/10 my-11 rounded-lg ring-2 ring-[#e49012c8] flex flex-col justify-center items-center gap-1 mt-[8vh]'>
+    <div className='w-[380px] h-[400px] bg-[#e49012c8]/10 my-11 rounded-lg ring-2 ring-[#e49012c8] flex flex-col justify-center items-center gap-1 mt-[8vh] relative'>
+    <div className='absolute right-[-6vh] top-[-7vh] my-3 mx-3 z-5'>
+            <button type="button" className='text-white hover:scale-125 rounded-full bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={handleclick}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" className="w-12 h-12 p-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            </button>
+  </div>
     <img alt="avatar" src={userData?.image || placeholder} sizes="(max-width: 640px) 100vw, 640px" className='rounded-full w-[250px] h-[250px]'/>
     <p className='text-white font-mono font-bold text-[30px] mt-7'>{userData.name}</p>
     <p className='text-white/80 font-mono text-[15px]'>{userData.email}</p>

@@ -66,10 +66,10 @@ const togglePasswordVisibility = () => {
     <img src={logo} alt="img" className="z-20 max-w-[400px]"/>
     <div className="z-20 bg-black/40 w-[45vh] rounded-2xl ring-1 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 backdrop-blur-lg hover:[#e49012c8]/40">
     <p className="text-white px-6 pt-11 text-[40px] font-sans font-bold">Your Ideas, Elevated!</p>
-    <span className="font-semibold text-[17px] px-8 text-secondary-white">Already have an account? <a onClick={handleClick} className="hover:cursor-pointer text-[#f89a0fe6]/80 hover:text-[#f89a0fe6] inline-block relative hover:underline">
+    <span className="font-semibold text-[17px] px-8 text-secondary-white">Already have an account? <p onClick={handleClick} className="hover:cursor-pointer text-[#f89a0fe6]/80 hover:text-[#f89a0fe6] inline-block relative hover:underline">
     Login to your account
     <span class="absolute w-full h-0.5 bg-[#f89a0fe6] transform scale-x-0 bottom-0 left-0 origin-bottom-right transition-transform duration-250 ease-out group-hover:scale-x-100"></span>
-  </a></span>
+  </p></span>
 
     <form onSubmit={handleSubmit} className="z-20 relative p-6 pt-3">
     <div className="mb-3 text-secondary-white/80 hover:text-secondary-white">

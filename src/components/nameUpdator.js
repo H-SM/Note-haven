@@ -5,7 +5,7 @@ const NameUpdator = () => {
 
   const [namer, setNamer] = useState({ name: "" });
   const context = useContext(contextValue);
-  const { changename, setUserData, userData} = context;
+  const { changename, setUserData } = context;
 
   const handleNameUpdate = async () => {
     try {
@@ -62,9 +62,9 @@ const NameUpdator = () => {
           onClick={handleNameUpdate}
           disabled={namer.name.length < 3}
           className="relative inline-flex items-center justify-center px-9 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group mt-1">
-        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
-        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-        <span class="relative text-[14px]">
+        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
+        <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+        <span className="relative text-[14px]">
           Update Name
         </span>
         </button>

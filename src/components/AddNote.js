@@ -59,9 +59,9 @@ function AddNote(props) {
   }, []);
   return (
       <button id="upload_widget" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
-      <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
-      <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-      <span class="relative text-[14px]">
+      <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
+      <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+      <span className="relative text-[14px]">
         Upload Image
       </span>
       </button>
@@ -76,8 +76,8 @@ function AddNote(props) {
 
     <div ref={ref} type="button" className="border-2 border-slate-400  justify-center items-center text-bold font-mono text-[16px] text-secondary-white w-[375px] h-[379px] border-dashed my-3 mx-2 hover:bg-secondary-white/10 rounded-lg " data-bs-toggle="modal" data-bs-target="#editModal">
     <div className='hover:scale-110 flex flex-col justify-center items-center h-full transition ease-linear transition-150'>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-11">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-11 h-11">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
     <p>Add a Note</p>
     </div>
@@ -92,8 +92,8 @@ function AddNote(props) {
       
 
       <button type="button text-black" data-bs-dismiss="modal" aria-label="Close" ref={closeRef}>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
       </button>
     </div>
@@ -120,9 +120,9 @@ function AddNote(props) {
         <div className=' mt-3 px-3'>
         <div className='flex flex-row justify-between mx-5'>
         <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group" onClick={handleclick}>
-        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
-        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-        <span class="relative text-[14px]">
+        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#e49012c8] rounded-full group-hover:w-56 group-hover:h-56"></span>
+        <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+        <span className="relative text-[14px]">
           Add Note
         </span>
         </button>     
