@@ -14,9 +14,7 @@ const Home = (props) => {
 
   return (
     <>
-      <div className='z-10 '>
       <Notes showAlert={showAlert}/>
-      </div>
       <Background/>
     </>
   )
