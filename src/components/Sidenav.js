@@ -65,7 +65,7 @@ const Sidenav = () => {
     <>
       <nav
               id="sidenav-3"
-              className="left-0 top-0 h-screen w-[400px] lg:w-[475px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] overflow-auto">
+              className="left-0 top-0 h-screen w-[400px] lg:w-[475px] bg-zinc-800/90 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] overflow-auto z-10">
               {/* Side Navbar content */}
               <div className='flex flex-col h-full justify-between  max-h-screen'>
               <div className='logo'>

@@ -5,6 +5,7 @@ import placeholder from '../assets/placeholder.png';
 import CloudinaryUploadWidget from './cloudinaryUpload';
 import { useNavigate } from 'react-router-dom/dist';
 import contextValue from "../context/User/userContext.js";
+import Background from './background';
 
 
 const Settings = () => {
@@ -39,8 +40,9 @@ const Settings = () => {
    
   return (
     <>
+    <Background/>
   <div className='my-[50px] w-full relative'></div>
-  <div className='flex flex-row justify-center items-start gap-11'>
+  <div className='flex flex-row justify-center items-start gap-11  z-20'>
     <div className='overflow-y-auto h-screen scroll-auto  mx-5 my-3'>
     <h1 className='semi-bold font-mono text-white text-[40px] flex gap-2'>Hello, <p className='font-bold'> {userData.name}</p>!</h1>
     <h3 className='font-mono text-white text-[17px] mt-1'>You can personalize yourself here..</h3>

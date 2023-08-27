@@ -6,6 +6,7 @@ import logo from "../assets/Logo.png";
 import Alert from "./Alert.js";
 // import ReactMarkdown from 'react-markdown';
 import clsx from 'clsx';
+import LBackground from './Lbackground.js';
 
 const YourNote = (props) => {
   const [alert , setAlert ] = useState(null);
@@ -219,9 +220,10 @@ const YourNote = (props) => {
     }
   return (
     <div className='flex flex-row'>
+      <LBackground/>
     <nav
               id="sidenav-3"
-            className={clsx(`left-0 top-0 h-screen overflow-hidden max-w-[400px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] transition ease-in-out transition-300`,
+            className={clsx(`left-0 top-0 h-screen overflow-hidden max-w-[400px] bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] transition ease-in-out transition-300 z-20`,
             opener ? "w-screen" : "w-0")}>
       <div className='flex flex-col justify-between w-full h-full'>
         <div>
@@ -300,10 +302,10 @@ const YourNote = (props) => {
         </div>
       </div>
     </nav>
-    <div className='flex justify-center w-full relative'>
+    <div className='flex justify-center w-full relative z-20'>
     <div className='absolute right-0 my-3 mx-3 z-5'>
           
-            <button type="button" className='text-white hover:scale-125 rounded-full bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={() => setModal(true)}>
+            <button type="button" className='text-white hover:scale-125 rounded-full bg-[#e49012c8]/40 transition ease-in-out transition-500' onClick={() => setModal(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-11 h-11 p-1">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -375,13 +377,15 @@ const YourNote = (props) => {
             name="etitle"
             value={updatedNote.etitle}
             onChange={onChange}
+            style={{width: `calc(1ch * ${updatedNote.etitle.length})`, minWidth: '60px' , maxWidth: '85vh' }}
           />
         </div>
         <div className="mb-3 flex flex-grow items-center justify-center text-[15px] bg-[#e49012c8]/20 border-0 ring-1 ring-[#e49012c8]/40 w-fit leading-[27px] px-3 rounded-full ">
            <p className='text-white px-1'>#</p>
           <input style={{width: `calc(1ch * ${updatedNote.etag.length})`, minWidth: '60px' , maxWidth: '85vh' }} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
-      <div className="mb-3 h-[82vh] lg:w-[100vh] md:w-[40vh] px-3 py-3 overflow-y-none no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
+        {/* #bb6f19df */}
+      <div className="mb-3 h-[82vh] lg:w-[100vh] md:w-[40vh] px-3 py-3 overflow-y-none no-scrollbar bg-gray-900/60 backdrop-blur-lg rounded-lg">
             <textarea
              type="text" 
             className="bg-transparent text-[20px] outline-none w-full h-full  scroll-auto border-none"

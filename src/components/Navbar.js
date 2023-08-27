@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
 <>
-<nav className='bg-zinc-800/40 w-full'>
+<nav className='bg-zinc-800/40 w-full z-10'>
     <div className='pl-[0.5rem] pr-[0.5rem] max-w-[80rem] ml-auto mr-auto '>
       <div className='justify-between items-center h-[6rem] flex relative'>
         <div className='pl-[0.5rem] pr-[0.5rem] justify-start flex flex-grow flex-shrink flex-0'>

@@ -22,8 +22,9 @@ function Notes(props) {
   
   return (
     <>
-    <div className='flex flex-wrap gap-3 justify-center h-full max-h-[100vh] overflow-hidden no-scrollbar overflow-y-auto w-full'>
-      <AddNote showAlert={showAlert}/>
+    <div className='flex flex-wrap gap-3 justify-center h-full max-h-[100vh] overflow-hidden no-scrollbar overflow-y-auto w-full '>
+    
+      <AddNote showAlert={showAlert} />
       {(notes.length===0) && <p className='w-full flex justify-center items-center text-white font-Sacramento text-[50px] mt-[-15vh]'>Start your awesome journey by clicking the button above.</p>}
       {searchedNote==="" ? notes.map((note) => {
         return <Noteitem note={note} key={note._id} showAlert={showAlert} />
