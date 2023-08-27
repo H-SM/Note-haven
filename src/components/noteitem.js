@@ -31,45 +31,21 @@ const formatTime = (isoTime) => {
   return (
     <div className="my-3 mx-2 relative">
     <div className="bg-[#f4d799] w-[375px] h-[379px] relative transition ease-in-out transition-200">
-      <svg
-        className="absolute top-0 left-0 py-2 px-2 w-[5.5rem] h-[5.5rem] hover:cursor-pointer hover:scale-110 z-20 transition ease-in-out transition-200 text-black"
+    <div className="absolute top-3 left-1 py-2 px-2 w-[4rem] h-[4rem] hover:cursor-pointer hover:scale-110 z-20 transition ease-in-out transition-200 text-gray-800">
+      <svg 
         onClick={()=>{deletenote(note._id); showAlert("Deleted successfully!", "success");}}
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-11">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
       </svg>
-
-      {/* <svg
-        className="absolute top-0 right-0 py-2 px-2 hover:cursor-pointer w-[4rem] h-[4rem]"
-        onClick={handleclick}
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg> */}
-      <div className='absolute top-0 right-0 justify-center items-center bg-black text-white rounded-full mx-3 my-3 hover:scale-110 z-20 transition ease-in-out transition-200' onClick={handleclick}>
+      </div>
+      <div className='absolute right-2 top-1 py-[-1rem] px-[-0.5rem] w-[4rem] h-[4rem] hover:cursor-pointer hover:scale-110 z-20 transition ease-in-out transition-200 text-blue-900' onClick={handleclick}>
       <svg
        xmlns="http://www.w3.org/2000/svg"
        fill="none"
        viewBox="0 0 24 24"
        strokeWidth="1.5"
        stroke="currentColor"
-       className=" py-3 px-3 hover:cursor-pointer w-[4rem] h-[4rem]"
+       className=" py-3 px-3 hover:cursor-pointer w-[5rem] h-[5rem]"
       >
        <path
          strokeLinecap="round"
