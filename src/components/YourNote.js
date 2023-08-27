@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import contextValue from "../context/Notes/noteContext.js";
-import placeholder from '../assets/placeholder.png';
+import placeholder from '../assets/flower.png';
 import logo from "../assets/Logo.png";
 import Alert from "./Alert.js";
 import ReactMarkdown from 'react-markdown';
@@ -237,7 +237,7 @@ const YourNote = (props) => {
             opener ? "w-screen" : "w-0")}>
       <div className='flex flex-col justify-between w-full h-full'>
         <div>
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo" className='px-11 pt-4'/>
         <p className='text-secondary-white text-semibold text-[15px] text-center font-mono px-1 py-2'>Your Ideas, Elevated.</p>
         </div>
         <div className='items-center justify-between'>

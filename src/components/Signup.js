@@ -30,6 +30,7 @@ function Signup(props) {
             props.showAlert("Account created successfully!", "success");
         }else{
             props.showAlert("Invalid Credentials", "danger");
+            alert("Invalid Credentials! Please check again...");
         }
     }
   const onChange= (e) =>{
@@ -47,18 +48,26 @@ const togglePasswordVisibility = () => {
 
   return (
     <div className="text-white w-screen h-screen relative">
+    <div
+      className="absolute w-full h-full z-0"
+    >
+       <div
+      className="w-full h-full"
+      style={{
+        position: 'relative',
+      }}
+    >
       <div
-        className="absolute w-screen h-screen z-0"
+      className="absolute top-[-90vh] left-[-55vh] w-[4000px] h-[4000px] animate-spin-slow"
         style={{
-          backgroundColor: "#1b1b1b",
-          backgroundImage: `
-            url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 400"%3E%3Cdefs%3E%3Cpattern id="bg_pattern" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cline x1="0" y1="0" x2="10" y2="10" stroke="%23f89a0fe6" stroke-width="6" stroke-linecap="round"%3E%3C/line%3E%3Cline x1="90" y1="90" x2="100" y2="100" stroke="%23f89a0fe6" stroke-width="6" stroke-linecap="round"%3E%3C/line%3E%3Cline x1="10" y1="90" x2="0" y2="100" stroke="%23f89a0fe6" stroke-width="6" stroke-linecap="round"%3E%3C/line%3E%3Cline x1="90" y1="10" x2="100" y2="0" stroke="%23f89a0fe6" stroke-width="6" stroke-linecap="round"%3E%3C/line%3E%3Cline x1="40" y1="40" x2="60" y2="60" stroke="%23f89a0fe6" stroke-width="6" stroke-linecap="round"%3E%3C/line%3E%3Cline x1="60" y1="40" x2="40" y2="60" stroke="%23f89a0fe6" stroke-width="6" stroke-linecap="round"%3E%3C/line%3E%3C/pattern%3E%3C/defs%3E%3Crect x="0" y="0" width="100%25" height="100%25" fill="%231b1b1b" opacity="1"%3E%3C/rect%3E%3Crect x="0" y="0" width="100%25" height="100%25" fill="url(%23bg_pattern)" opacity="0.2"%3E%3C/rect%3E%3C/svg%3E'
-          `,
+          backgroundImage: `conic-gradient(from 0deg at 50% 50%, rgba(228, 144, 18, 0.784), rgb(181, 63, 81), rgb(123, 46, 150), rgba(228, 144, 18, 0.784))`,
         }}
-      />
-    <div className="flex flex-col gap-11 justify-center items-center w-full h-full z-20">
+      ></div>
+    </div>
+    </div>
+  <div className="flex flex-col gap-11 justify-center items-center w-full h-full z-20">
     <img src={logo} alt="img" className="z-20 max-w-[400px]"/>
-    <div className="z-20 mt-6 bg-black/40 w-[45vh] rounded-2xl ring-2 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 hover:[#e49012c8]/40">
+    <div className="z-20 bg-black/40 w-[45vh] rounded-2xl ring-1 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 backdrop-blur-lg hover:[#e49012c8]/40">
     <p className="text-white px-6 pt-11 text-[40px] font-sans font-bold">Your Ideas, Elevated!</p>
     <span className="font-semibold text-[17px] px-8 text-secondary-white">Already have an account? <a onClick={handleClick} className="hover:cursor-pointer text-[#f89a0fe6]/80 hover:text-[#f89a0fe6] inline-block relative hover:underline">
     Login to your account

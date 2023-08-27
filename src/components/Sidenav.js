@@ -70,7 +70,7 @@ const Sidenav = () => {
               {/* Side Navbar content */}
               <div className='flex flex-col h-full justify-between  max-h-screen'>
               <div className='logo'>
-              <img src={logo} alt="logo" className='pt-[30px]'/>
+              <img src={logo} alt="logo" className='pt-[30px] px-10'/>
               <p className='text-secondary-white text-semibold text-[15px] text-right px-5 mt-[-15px] sm:mt-[-5px]'>- By HSM</p>
 
               <p className='text-secondary-white text-semibold text-[15px] text-center font-mono px-1 py-2'>Your Ideas, Elevated.</p>

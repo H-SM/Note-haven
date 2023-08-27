@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import contextValue from "../context/Notes/noteContext.js";
 import { useNavigate } from 'react-router-dom';
-import placeholder from '../assets/placeholder.png';
+import placeholder from '../assets/flower.png';
 
 function NotesItem(props) {
   const context = useContext(contextValue);

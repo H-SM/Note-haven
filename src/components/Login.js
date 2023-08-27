@@ -23,6 +23,7 @@ function Login(props) {
             navigate("/");
         }else{
             props.showAlert("Invalid credentails", "danger");
+            alert("Invalid credentails! Please check again...")
         }
     }
 
@@ -42,16 +43,25 @@ function Login(props) {
   return (
     <div className="text-white w-screen h-screen relative">
     <div
-        className="absolute w-screen h-screen z-0"
+      className="absolute w-full h-full z-0"
+    >
+       <div
+      className="w-full h-full"
+      style={{
+        position: 'relative',
+      }}
+    >
+      <div
+      className="absolute  w-screen h-screen animate-pulse-slow"
         style={{
-          backgroundImage: `
-            url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cdefs%3E%3Cpattern id="bg_pattern" width="10" height="10" patternUnits="userSpaceOnUse"%3E%3Ccircle cx="5" cy="5" r="1" fill="%23e49012c8" stroke="none"%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect x="0" y="0" width="100%25" height="100%25" fill="%231b1b1b" opacity="1"%3E%3C/rect%3E%3Crect x="0" y="0" width="100%25" height="100%25" fill="url(%23bg_pattern)" opacity="0.2"%3E%3C/rect%3E%3C/svg%3E'
-        `,
+          backgroundImage: `radial-gradient(circle at 50% 50%, rgba(228, 144, 18, 0.784), rgba(228, 144, 18, 0.784), rgb(181, 63, 81), rgb(123, 46, 150)`,
         }}
-      />
+      ></div>
+    </div>
+    </div>
     <div className="flex flex-col gap-11 justify-center items-center w-full h-full z-20">
     <img src={logo} alt="img" className="z-20 max-w-[400px]"/>
-    <div className="z-20 mt-6 bg-black/40 w-[45vh] rounded-2xl ring-2 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30 transition ease-linear transition-1000 hover:[#e49012c8]/40">
+    <div className="z-20 bg-black/40 w-[45vh] rounded-2xl ring-1 ring-[#e49012c8]/30 hover:shadow-lg hover:shadow-[#e49012c8]/30  backdrop-blur-lg transition ease-linear transition-1000 hover:[#e49012c8]/40">
     <p className="text-white px-6 pt-11 text-[40px] font-bold">Welcome Back!</p>
   <span className="font-semibold text-[17px] px-8 text-secondary-white">Don't have an account? <a onClick={handleClick} className="hover:cursor-pointer text-[#f89a0fe6]/80 hover:text-[#f89a0fe6] inline-block relative hover:underline">
   create a new account
