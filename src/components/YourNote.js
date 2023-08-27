@@ -9,6 +9,8 @@ import clsx from 'clsx';
 
 const YourNote = (props) => {
   const [alert , setAlert ] = useState(null);
+  const [modal , setModal ] = useState(false);
+
   const showAlert = (message, type) => {
     setAlert({
       msg: message,
@@ -196,7 +198,7 @@ const YourNote = (props) => {
     const handleKeyDown = (event) => {
       if ( event.key === 'Escape') {
         event.preventDefault();
-        navigate("/");
+        setModal(!modal);
       }
     };
 
@@ -323,13 +325,53 @@ const YourNote = (props) => {
     </nav>
     <div className='flex justify-center w-full relative'>
     <div className='absolute right-0 my-3 mx-3 z-5'>
-          <Link to="/" aria-current="page">
-            <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500'>
+          
+            <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={() => setModal(true)}>
+            {/* <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500' data-modal-target="popup-modal" data-modal-show="popup-modal"> */}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 p-1">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
             </button>
-          </Link>
+
+
+      <div  tabindex="-1"  className={`fixed top-0 left-0 right-0 z-50 
+      ${modal ? 'flex justify-center items-center bg-gray-900/60': 'hidden'}
+      p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full`}>
+    <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-gray-900/90 rounded-lg dark:bg-gray-800 shadow-lg">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            onClick={() => setModal(false)}>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="p-6 text-center">
+                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
+                <h3 className="mb-5 text-lg font-normal text-gray-300 dark:text-gray-400">Are you sure you want to leave this page?<p className='mb-5 text-lg font-normal text-gray-400/80 dark:text-gray-400'>Any unsaved changes wont be saved!</p></h3>
+             
+                <button type="button" class="text-white bg-[#e49012c8]/90 hover:bg-[#e49012c8]/70 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-[#e49012c8]/30 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                onClick={() => {
+                  setModal(false)
+                  setTimeout(() => {
+                    navigate("/");
+                  }, 200); 
+                }}
+                >
+                    Yes, I'm sure
+                </button>
+    
+                <button type="button" class="text-gray-500 bg-white/80 hover:bg-gray-100/90 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                onClick={() => setModal(false)}
+                >No, cancel</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
     </div>
     <div className='absolute left-0 my-3 mx-3 z-5'>
             <button type="button" className='text-white hover:scale-125 rounded-full hover:bg-[#e49012c8]/20 transition ease-in-out transition-500' onClick={() => {setOpener(!opener)}}>
@@ -352,7 +394,7 @@ const YourNote = (props) => {
           </label> */}
           <input
             type="text"
-            className="bg-transparent font-bold text-[38px] outline-none"
+            className="bg-transparent font-bold text-[38px] outline-none border-none focus:border-none"
             id="etitle"
             name="etitle"
             value={updatedNote.etitle}
@@ -363,10 +405,10 @@ const YourNote = (props) => {
            <p className='text-white px-1'>#</p>
           <input style={{width: "70px"}} type="text" className="bg-transparent border-0 w-[auto] outline-none flex-grow" id="etag" name="etag" value={updatedNote.etag} onChange={onChange} placeholder="Your Tag"/>
         </div>
-      <div className="mb-3 h-[82vh] lg:w-[100vh] md:w-[40vh] px-3 py-3 overflow-y-auto no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
+      <div className="mb-3 h-[82vh] lg:w-[100vh] md:w-[40vh] px-3 py-3 overflow-y-none no-scrollbar bg-[#4f422ec8]/30 rounded-lg">
             <textarea
              type="text" 
-            className="bg-transparent text-[20px] outline-none w-full h-full  scroll-auto"
+            className="bg-transparent text-[20px] outline-none w-full h-full  scroll-auto border-none"
             id="edescription" 
             value={updatedNote.edescription}
             name="edescription" 
@@ -375,7 +417,7 @@ const YourNote = (props) => {
             {/* <div className="markdown-preview mt-2 text-[20px]">
             <ReactMarkdown>{updatedNote.edescription}</ReactMarkdown>
             </div> */}
-            <div className='justify-end flex gap-3 mt-[-2vh] mr-[1vh] opacity-50'>  
+          <div className='justify-end flex gap-3 mt-[-11px] mr-[4vh] opacity-50'>  
         <p><span className='font-bold'> {updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length}</span> words </p>
         <p><span className='font-bold'> {updatedNote.edescription.trim().length }</span> characters</p>
         <p><span className='font-bold'> {Math.trunc(0.008 * updatedNote.edescription.replace(/\n/g, " ").split(' ').filter(value => value !== "").length)}</span> minutes</p>

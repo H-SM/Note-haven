@@ -142,7 +142,7 @@ const PasswordUpdater = () => {
         </div>
         <button
           type="button"
-          className="relative inline-flex items-center justify-center px-9 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group mt-1"
+          className="relative inline-flex items-center justify-center px-9 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group mt-1 disabled:opacity-70 transition ease-linear transition-200"
           onClick={handlePasswordUpdate}
           disabled={password.newpassword.length < 5 || password.oldpassword.length < 5}
         >
