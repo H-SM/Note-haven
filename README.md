@@ -1,9 +1,3 @@
-# The TODO List 
-
-- apply changes to favicon & index.html
-- apply a redux - state looker rather than context api 
-- look over deployment of the application 
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
